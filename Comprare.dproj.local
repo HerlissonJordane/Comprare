@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2022/01/17 23:43:59.000.047,=C:\Users\HJMor\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/01/17 23:44:48.000.186,C:\Users\HJMor\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\HJMor\OneDrive\Documentos\Embarcadero\Studio\Projects\U_principal.dfm</Transaction>
+    <Transaction>2022/01/17 23:44:48.000.186,C:\Users\HJMor\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\HJMor\OneDrive\Documentos\Embarcadero\Studio\Projects\U_principal.pas</Transaction>
+    <Transaction>2022/01/17 23:44:51.000.000,C:\Users\HJMor\OneDrive\Documentos\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\HJMor\OneDrive\Documentos\Embarcadero\Studio\Projects\Comprare.dproj</Transaction>
+    <Transaction>2022/01/19 00:14:38.000.447,=H:\PROJETOS DEV\COMPRARE\Unit1.pas</Transaction>
+    <Transaction>2022/01/19 00:14:52.000.674,H:\PROJETOS DEV\COMPRARE\Unit1.pas=H:\PROJETOS DEV\COMPRARE\U_cadastra_cat.pas</Transaction>
+    <Transaction>2022/01/19 00:14:52.000.674,H:\PROJETOS DEV\COMPRARE\Unit1.dfm=H:\PROJETOS DEV\COMPRARE\U_cadastra_cat.dfm</Transaction>
+    <Transaction>2022/01/19 23:33:04.000.535,=H:\PROJETOS DEV\COMPRARE\Unit1.pas</Transaction>
+    <Transaction>2022/01/19 23:34:32.000.168,H:\PROJETOS DEV\COMPRARE\U_cadastra_comercio.dfm=H:\PROJETOS DEV\COMPRARE\Unit1.dfm</Transaction>
+    <Transaction>2022/01/19 23:34:32.000.168,H:\PROJETOS DEV\COMPRARE\U_cadastra_comercio.pas=H:\PROJETOS DEV\COMPRARE\Unit1.pas</Transaction>
+    <Transaction>2022/01/24 22:45:18.000.654,=H:\PROJETOS DEV\COMPRARE\Unit1.pas</Transaction>
+    <Transaction>2022/01/24 22:46:09.000.100,H:\PROJETOS DEV\COMPRARE\Unit1.dfm=H:\PROJETOS DEV\COMPRARE\U_cadastra_prod.dfm</Transaction>
+    <Transaction>2022/01/24 22:46:09.000.100,H:\PROJETOS DEV\COMPRARE\Unit1.pas=H:\PROJETOS DEV\COMPRARE\U_cadastra_prod.pas</Transaction>
+    <Transaction>2022/01/24 23:24:45.000.341,=H:\PROJETOS DEV\COMPRARE\Unit1.pas</Transaction>
+    <Transaction>2022/01/24 23:35:39.000.536,H:\PROJETOS DEV\COMPRARE\Unit1.pas=H:\PROJETOS DEV\COMPRARE\U_grid_produtos.pas</Transaction>
+    <Transaction>2022/01/24 23:35:39.000.536,H:\PROJETOS DEV\COMPRARE\Unit1.dfm=H:\PROJETOS DEV\COMPRARE\U_grid_produtos.dfm</Transaction>
+    <Transaction>2022/01/25 23:39:55.000.871,=H:\PROJETOS DEV\COMPRARE\Unit1.pas</Transaction>
+    <Transaction>2022/01/25 23:45:45.000.747,H:\PROJETOS DEV\COMPRARE\U_cad_cat_prod.dfm=H:\PROJETOS DEV\COMPRARE\Unit1.dfm</Transaction>
+    <Transaction>2022/01/25 23:45:45.000.746,H:\PROJETOS DEV\COMPRARE\U_cad_cat_prod.pas=H:\PROJETOS DEV\COMPRARE\Unit1.pas</Transaction>
+    <Transaction>2022/02/09 23:14:12.000.917,=H:\PROJETOS DEV\COMPRARE\Unit1.pas</Transaction>
+    <Transaction>2022/02/09 23:16:02.000.768,H:\PROJETOS DEV\COMPRARE\Unit1.dfm=H:\PROJETOS DEV\COMPRARE\U_ins_alt_cat_prod.dfm</Transaction>
+    <Transaction>2022/02/09 23:16:02.000.768,H:\PROJETOS DEV\COMPRARE\Unit1.pas=H:\PROJETOS DEV\COMPRARE\U_ins_alt_cat_prod.pas</Transaction>
+    <Transaction>2022/02/18 22:11:18.050,=H:\PROJETOS DEV\COMPRARE\Vcl.Controls.pas</Transaction>
+    <Transaction>2022/02/18 22:11:59.159,=H:\PROJETOS DEV\COMPRARE\Vcl.Consts.pas</Transaction>
+  </Transactions>
+</BorlandProject>
