@@ -65,7 +65,9 @@ end;
 procedure TFrm_cad_cat_prod.Btn_inserirClick(Sender: TObject);
 begin
   Frm_ins_alt_cat_prod:= TFrm_ins_alt_cat_prod.Create(Application);
+  Frm_ins_alt_cat_prod.LblEdit_cod.Enabled:= False;
   Frm_ins_alt_cat_prod.ShowModal;
+  Frm_ins_alt_cat_prod.LblEdit_categoria.SetFocus;
 
 end;
 
@@ -74,21 +76,28 @@ var codigo, categoria: String;
 begin
   codigo:= ADODataSet1.FieldByName('cod_cat_prod').AsString;
   categoria:= ADODataSet1.FieldByName('nome_cat').AsString;
-  ADODataSet1.Close;
-  ADODataSet1.CommandText:= 'DELETE CAT_PRODUTO WHERE cod_cat_prod = '+chr(39)+codigo+chr(39);
+  ADOQuery1.Close;
+  ADOQuery1.SQL.Clear;
+  ADOQuery1.SQL.Add('DELETE CAT_PRODUTO WHERE cod_cat_prod = '+chr(39)+codigo+chr(39));
+
   try
-    if MessageDlg('Deseja apagar '+ categoria+' ?',mtConfirmation,[mbYes, mbNo],0) = mrNo then begin
+    if Application.MessageBox(pchar('Deseja apagar a categoria '+categoria+' ?'),'Alerta',mb_YesNo+mb_IconError+mb_DefButton2)=mrno then begin
+    //MessageDlg('Deseja apagar a categoria '+ categoria+' ?',mtConfirmation,[mbYes, mbNo],0) = mrNo then begin
       Abort;
     end;
-    ADODataSet1.Delete;
+    ADOQuery1.ExecSQL;
     ShowMessage('Categoria '+categoria+' deletado com sucesso!');
+    FormShow(Self);
   except on E: Exception do
-    if Application.MessageBox(pchar(E.MESSAGE),'Mensagem do Sistema',mb_iconerror+mb_ok)=mrok then begin
-
+    //if Application.MessageBox(pchar(E.MESSAGE),'Mensagem do Sistema',mb_iconerror+mb_ok)=mrok then begin
+    if POS('aborted',E.Message)>0 then begin
+      //ShowMessage('Erro ao deletar!'+ E.Message);
+      
+    end else begin
+      FormShow(Self);  
     end;
-    ShowMessage('Erro ao deletar!'+ E.Message);
   end;
-  FormShow(Self);
+  
 end;
 
 procedure TFrm_cad_cat_prod.DBGrid1DblClick(Sender: TObject);
@@ -109,7 +118,7 @@ end;
 
 procedure TFrm_cad_cat_prod.FormShow(Sender: TObject);
 begin
-  LblEdit_categoria.SetFocus;
+ // LblEdit_categoria.SetFocus;
 
  { //tamanho de cada linha de registros
   DBGrid_1(DBGrid1).DefaultRowHeight:= 30;

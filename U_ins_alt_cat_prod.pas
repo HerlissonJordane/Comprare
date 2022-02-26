@@ -73,9 +73,10 @@ begin
 
 
     ADOQuery_cat_prod.ExecSQL;
-    ShowMessage(msg);
-    Frm_cad_cat_prod.FormShow(Self);
+    Application.MessageBox(pchar(msg),'Informação',mb_Ok+mb_IconInformation+mb_DefButton1);
+//    ShowMessage(msg);
     Close;
+    Frm_cad_cat_prod.FormShow(Self);
   Except
     ShowMessage('Erro ao cadastrar categoria');
   end;
