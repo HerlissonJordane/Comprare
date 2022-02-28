@@ -51,32 +51,31 @@ end;
 procedure TFrm_ins_alt_cat_prod.SB_salvarClick(Sender: TObject);
 var msg: String;
 begin
+  if LblEdit_categoria.Text = '' then begin
+    ShowMessage('O campo de categoria não pode ser vazio!');
+    LblEdit_categoria.SetFocus;
+    Abort;
+  end;
+
+  ADOQuery_cat_prod.Close;
+  ADOQuery_cat_prod.SQL.Clear;
+
+  if LblEdit_cod.Text = '' then begin
+    ADOQuery_cat_prod.SQL.Add('insert into cat_produto values('+chr(39)+LblEdit_categoria.Text+chr(39)+')');
+    msg:= 'Cadastro realizado com sucesso!';
+  end else begin
+    ADOQuery_cat_prod.SQL.Add('update cat_produto set '+
+                              'nome_cat = '+chr(39)+LblEdit_categoria.Text+chr(39)+
+                              ' where '+chr(39)+LblEdit_cod.Text+chr(39)+' = cod_cat_prod');
+    msg:= 'Alteração realizada com sucesso!';
+  end;
+
   try
-    if LblEdit_categoria.Text = '' then begin
-      ShowMessage('O campo de categoria não pode ser vazio!');
-      Abort;
-      LblEdit_categoria.SetFocus;
-    end;
-
-    ADOQuery_cat_prod.Close;
-    ADOQuery_cat_prod.SQL.Clear;
-
-    if LblEdit_cod.Text = '' then begin
-      ADOQuery_cat_prod.SQL.Add('insert into cat_produto values('+chr(39)+LblEdit_categoria.Text+chr(39)+')');
-      msg:= 'Cadastro realizado com sucesso!';
-    end else begin
-      ADOQuery_cat_prod.SQL.Add('update cat_produto set '+
-                                'nome_cat = '+chr(39)+LblEdit_categoria.Text+chr(39)+
-                                ' where '+chr(39)+LblEdit_cod.Text+chr(39)+' = cod_cat_prod');
-      msg:= 'Alteração realizada com sucesso!';
-    end;
-
-
     ADOQuery_cat_prod.ExecSQL;
     Application.MessageBox(pchar(msg),'Informação',mb_Ok+mb_IconInformation+mb_DefButton1);
 //    ShowMessage(msg);
-    Close;
     Frm_cad_cat_prod.FormShow(Self);
+    Close;
   Except
     ShowMessage('Erro ao cadastrar categoria');
   end;

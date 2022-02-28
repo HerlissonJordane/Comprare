@@ -98,7 +98,7 @@ begin
   try
     ADOQuery_categoria.Close;
     ADOQuery_categoria.SQL.Clear;
-    ADOQuery_categoria.SQL.Add('SELECT * FROM CAT_COMERCIO ORDER BY CATEGORIA');
+    ADOQuery_categoria.SQL.Add('SELECT * FROM CATEGORIA ORDER BY CATEGORIA');
     ADOQuery_categoria.Open;
     categoria:= ADOQuery_categoria.FieldByName('cod_cat').AsInteger;
     DBLookupComboBox_categoria.KeyValue:= categoria; //recebe o primeiro por ordem alfabética
