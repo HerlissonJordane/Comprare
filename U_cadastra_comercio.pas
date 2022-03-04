@@ -39,7 +39,7 @@ var
   Frm_cad_comercio: TFrm_cad_comercio;
 
 implementation
-uses U_principal;
+uses U_principal, U_comercios;
 
 {$R *.dfm}
 
@@ -62,18 +62,21 @@ begin
                                                             +chr(39)+IntToStr(DBLookupComboBox_categoria.KeyValue)+chr(39)+')');
     ADOQuery_cad_loja.ExecSQL;
 
-    ShowMessage('Cadastrado com sucesso!');
-    LblEdit_nome.Text:= '';
-    LblEdit_rua.Text:= '';
-    LblEdit_numero.Text:= '';
-    LblEdit_bairro.Text:= '';
-    LblEdit_cidade.Text:= '';
-    LblEdit_uf.Text:= '';
-    DBLookupComboBox_categoria.KeyValue:= categoria;
-    LblEdit_nome.SetFocus;
+    Application.MessageBox('Cadastrado com sucesso!', 'Informação', mb_Ok+mb_IconInformation+mb_DefButton1);
+    Close;
+    Frm_comercios.FormShow(Self);
+//    LblEdit_nome.Text:= '';
+//    LblEdit_rua.Text:= '';
+//    LblEdit_numero.Text:= '';
+//    LblEdit_bairro.Text:= '';
+//    LblEdit_cidade.Text:= '';
+//    LblEdit_uf.Text:= '';
+//    DBLookupComboBox_categoria.KeyValue:= categoria;
+//    LblEdit_nome.SetFocus;
 
   except
-    ShowMessage('Erro ao gravar. Verifique o motivo!');
+    Application.MessageBox('Erro ao gravar. Verifique o motivo!', 'Alerta', mb_Ok+mb_IconError+mb_DefButton1);
+//    ShowMessage('Erro ao gravar. Verifique o motivo!');
   end;
 end;
 
@@ -100,16 +103,18 @@ begin
     ADOQuery_categoria.SQL.Clear;
     ADOQuery_categoria.SQL.Add('SELECT * FROM CAT_COMERCIO ORDER BY CATEGORIA');
     ADOQuery_categoria.Open;
-    categoria:= ADOQuery_categoria.FieldByName('cod_cat').AsInteger;
-    DBLookupComboBox_categoria.KeyValue:= categoria; //recebe o primeiro por ordem alfabética
+    //se for alteração, mantem a categoria certa no lookUp
+    if Frm_comercios.acao = 'I' then begin
+      categoria:= ADOQuery_categoria.FieldByName('cod_cat').AsInteger;
+      DBLookupComboBox_categoria.KeyValue:= categoria; //recebe o primeiro por ordem alfabética
+    end;
+
     LblEdit_cod_loja.Enabled:= False;
     LblEdit_nome.SetFocus;
   Except
     ShowMessage('Houve um erro de conexão. Tente novamente ou verifique a rede interna.');
     //tem que colocar algo aqui ainda
   end;
-
-
 end;
 
 end.

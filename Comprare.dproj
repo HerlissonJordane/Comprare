@@ -159,6 +159,10 @@
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="Vcl.Consts.pas"/>
+        <DCCReference Include="U_comercios.pas">
+            <Form>Frm_comercios</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

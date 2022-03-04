@@ -67,7 +67,6 @@ begin
   Frm_ins_alt_cat_prod:= TFrm_ins_alt_cat_prod.Create(Application);
   Frm_ins_alt_cat_prod.LblEdit_cod.Enabled:= False;
   Frm_ins_alt_cat_prod.ShowModal;
-  Frm_ins_alt_cat_prod.LblEdit_categoria.SetFocus;
 
 end;
 

@@ -116,7 +116,6 @@ object Frm_cad_cat_prod: TFrm_cad_cat_prod
     Top = 192
   end
   object ADODataSet1: TADODataSet
-    Active = True
     Connection = Frm_principal.ADOConnection1
     CursorType = ctStatic
     CommandText = 'SELECT * FROM CAT_PRODUTO'
