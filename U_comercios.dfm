@@ -33,7 +33,7 @@ object Frm_comercios: TFrm_comercios
     Top = 328
     Width = 75
     Height = 33
-    Caption = 'Cancelar'
+    Caption = 'Fechar'
     TabOrder = 1
     OnClick = Btn_cancelarClick
   end
@@ -113,13 +113,14 @@ object Frm_comercios: TFrm_comercios
     TabOrder = 4
     OnClick = Btn_alterarClick
   end
-  object Button1: TButton
+  object Btn_excluir: TButton
     Left = 218
     Top = 328
     Width = 75
     Height = 33
     Caption = 'Excluir'
     TabOrder = 5
+    OnClick = Btn_excluirClick
   end
   object ADOQuery1: TADOQuery
     Connection = Frm_principal.ADOConnection1
@@ -133,6 +134,7 @@ object Frm_comercios: TFrm_comercios
     Top = 328
   end
   object ADODataSet1: TADODataSet
+    Active = True
     Connection = Frm_principal.ADOConnection1
     CursorType = ctStatic
     CommandText = 

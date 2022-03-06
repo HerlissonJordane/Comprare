@@ -14,7 +14,7 @@ type
     DBGrid1: TDBGrid;
     Btn_inserir: TButton;
     Btn_alterar: TButton;
-    Button1: TButton;
+    Btn_excluir: TButton;
     ADOQuery1: TADOQuery;
     DataSource1: TDataSource;
     ADODataSet1: TADODataSet;
@@ -23,6 +23,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Btn_inserirClick(Sender: TObject);
     procedure Btn_alterarClick(Sender: TObject);
+    procedure Btn_excluirClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -64,6 +65,37 @@ procedure TFrm_comercios.Btn_inserirClick(Sender: TObject);
 begin
   Frm_cad_comercio:= TFrm_cad_comercio.Create(Application);
   Frm_cad_comercio.Show;
+end;
+
+procedure TFrm_comercios.Btn_excluirClick(Sender: TObject);
+var codigo, comercio:String;
+begin
+  codigo:= ADODataSet1.FieldByName('cod_sup').AsString;
+  comercio:= ADODataSet1.FieldByName('nome').AsString;
+  ADOQuery1.Close;
+  ADOQuery1.SQL.Clear;
+  ADOQuery1.SQL.Add('DELETE COMERCIO WHERE cod_sup = '+chr(39)+codigo+chr(39));
+
+  try
+    if Application.MessageBox(pchar('Deseja apagar a categoria '+comercio+' ?'),'Alerta',mb_YesNo+mb_IconError+mb_DefButton2)=mrno then begin
+      Abort;
+    end;
+    ADOQuery1.ExecSQL;
+    ShowMessage('Comércio '+comercio+' deletado com sucesso!');
+    //atualiza Grid
+    ADODataSet1.Active:= False;
+    ADODataSet1.Active:= True;
+
+  except on E: Exception do
+
+    if POS('aborted',E.Message)>0 then begin
+      //ShowMessage('Erro ao deletar!'+ E.Message);
+
+    end else begin
+      ADODataSet1.Active:= False;
+      ADODataSet1.Active:= True;
+    end;
+  end;
 end;
 
 procedure TFrm_comercios.FormClose(Sender: TObject; var Action: TCloseAction);
