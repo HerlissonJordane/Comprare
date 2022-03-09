@@ -40,7 +40,7 @@ var
 
 implementation
 uses U_cadastra_cat, U_cadastra_comercio, U_cadastra_prod, U_cad_cat_prod,
-U_comercios;
+U_comercios, U_produtos;
 
 {$R *.dfm}
 
@@ -85,8 +85,8 @@ end;
 
 procedure TFrm_principal.Produtos1Click(Sender: TObject);
 begin
-  Frm_cad_prod:= TFrm_cad_prod.Create(Application);
-  Frm_cad_prod.Show;
+  Frm_produtos:= TFrm_produtos.Create(Application);
+  Frm_produtos.Show;
 end;
 
 end.

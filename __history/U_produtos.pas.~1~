@@ -1,0 +1,31 @@
+unit U_produtos;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
+  Vcl.StdCtrls, Vcl.ExtCtrls;
+
+type
+  TFrm_produtos = class(TForm)
+    LblEdit_categoria: TLabeledEdit;
+    Btn_cancelar: TButton;
+    DBGrid1: TDBGrid;
+    Btn_inserir: TButton;
+    Btn_alterar: TButton;
+    Button1: TButton;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Frm_produtos: TFrm_produtos;
+
+implementation
+
+{$R *.dfm}
+
+end.

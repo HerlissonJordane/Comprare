@@ -11,13 +11,17 @@ type
   TFrm_cad_prod = class(TForm)
     LblEdit_cod_prod: TLabeledEdit;
     LblEdit_nome: TLabeledEdit;
-    DBLookupComboBox_unidade: TDBLookupComboBox;
+    DBLookupComboBox_categoria: TDBLookupComboBox;
     Label1: TLabel;
     ADOQuery_unidade: TADOQuery;
     DataSource_unidade: TDataSource;
     Btn_salvar: TButton;
     Btn_cancelar: TButton;
     ADOQuery_aux: TADOQuery;
+    DBLookupComboBox_unidade: TDBLookupComboBox;
+    Label2: TLabel;
+    ADOQuery_categoria: TADOQuery;
+    DataSource_categoria: TDataSource;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
@@ -25,7 +29,7 @@ type
     procedure Btn_cancelarClick(Sender: TObject);
   private
     { Private declarations }
-    unidade: Integer;
+    unidade, categoria: Integer;
   public
     { Public declarations }
   end;
@@ -34,7 +38,7 @@ var
   Frm_cad_prod: TFrm_cad_prod;
 
 implementation
-uses U_principal;
+uses U_principal, U_produtos;
 
 {$R *.dfm}
 
@@ -44,22 +48,46 @@ begin
 end;
 
 procedure TFrm_cad_prod.Btn_salvarClick(Sender: TObject);
+var msg: String;
 begin
   Try
+    if LblEdit_nome.Text = '' then begin
+      ShowMessage('O campo de produto não pode ser vazio!');
+      Abort;
+      LblEdit_nome.SetFocus;
+    end;
+
     ADOQuery_aux.Close;
     ADOQuery_aux.SQL.Clear;
-    ADOQuery_aux.SQL.Add('INSERT INTO produtos VALUES('
-                                               +chr(39)+LblEdit_nome.Text+chr(39)+', '
-                                               +chr(39)+IntToStr(DBLookupComboBox_unidade.KeyValue)+chr(39)+' )'
-                                               );
-    ADOQuery_aux.ExecSQL;
-    ShowMessage('Cadastro realizado com sucesso!');
+
+    if LblEdit_cod_prod.Text = '' then begin
+      ADOQuery_aux.SQL.Add('INSERT INTO produtos VALUES('
+                                           +chr(39)+LblEdit_nome.Text+chr(39)+', '
+                                           +chr(39)+IntToStr(DBLookupComboBox_unidade.KeyValue)+chr(39)+', '
+                                           +chr(39)+IntToStr(DBLookupComboBox_categoria.KeyValue)+chr(39)+')'
+                                           );
+      msg:= 'Cadastro realizado com sucesso!';
+    end else begin
+      ADOQuery_aux.SQL.Add('update produtos set '+
+                           'nome = '+chr(39)+LblEdit_nome.Text+chr(39)+', '+
+                           'cod_und = '+chr(39)+IntToStr(DBLookupComboBox_unidade.KeyValue)+chr(39)+','+
+                           'cod_cat_prod = '+chr(39)+IntToStr(DBLookupComboBox_categoria.KeyValue)+chr(39)+
+                           ' where '+chr(39)+LblEdit_cod_prod.Text+chr(39)+' = cod_prod');
+      msg:= 'Alteração realizada com sucesso!';
+    end;
+      ADOQuery_aux.ExecSQL;
+      Application.MessageBox(pChar(msg),'Informação',mb_Ok+mb_IconInformation+mb_DefButton1);
+      Frm_produtos.ADODataSet1.Active:= False;
+      Frm_produtos.ADODataSet1.Active:= True;
   Except
-    ShowMessage('Erro ao gravar no banco de dados!'+#13+'Verifique a conexão e tenta novamente.');
+    msg:= 'Erro ao gravar no banco de dados!'+#13+'Verifique a conexão e tenta novamente.';
+    Application.MessageBox(pChar(msg),'ERRO',mb_Ok+mb_IconError+mb_DefButton1);
     LblEdit_nome.SetFocus;
   End;
+
+  LblEdit_cod_prod.Text:= '';
   LblEdit_nome.Text:= '';
-  DBLookupComboBox_unidade.KeyValue:= unidade;
+  //DBLookupComboBox_unidade.KeyValue:= unidade;
   LblEdit_nome.SetFocus;
 end;
 
@@ -80,15 +108,23 @@ end;
 procedure TFrm_cad_prod.FormShow(Sender: TObject);
 begin
   Try
-    ADOQuery_unidade.Close;
-    ADOQuery_unidade.SQL.Clear;
-    ADOQuery_unidade.SQL.Add('SELECT cod_und, descricao FROM unidades ORDER BY DESCRICAO');
     ADOQuery_unidade.Open;
     unidade:= ADOQuery_unidade.FieldByName('cod_und').AsInteger;
     DBLookupComboBox_unidade.KeyValue:= unidade;
   Except
     ShowMessage('Erro ao carregar lista de unidades.');
+    Abort;
   End;
+
+  Try
+    ADOQuery_categoria.Open;
+    categoria:= ADOQuery_categoria.FieldByName('cod_cat_prod').AsInteger;
+    DBLookupComboBox_categoria.KeyValue:= categoria;
+  Except
+    ShowMessage('Erro ao carregar lista de categorias.');
+    Abort;
+  End;
+
   LblEdit_cod_prod.Enabled:= False;
   LblEdit_nome.SetFocus;
 end;
