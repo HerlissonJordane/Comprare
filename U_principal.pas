@@ -39,7 +39,8 @@ var
   Frm_principal: TFrm_principal;
 
 implementation
-uses U_cadastra_cat, U_cadastra_comercio, U_cadastra_prod, U_cad_cat_prod;
+uses U_cadastra_cat, U_cadastra_comercio, U_cadastra_prod, U_cad_cat_prod,
+U_comercios, U_produtos;
 
 {$R *.dfm}
 
@@ -57,8 +58,8 @@ end;
 
 procedure TFrm_principal.Comrcio1Click(Sender: TObject);
 begin
-  Frm_cad_comercio:= TFrm_cad_comercio.Create(Application);
-  Frm_cad_comercio.ShowModal;
+  Frm_comercios:= TFrm_comercios.Create(Application);
+  Frm_comercios.ShowModal;
 end;
 
 procedure TFrm_principal.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -84,8 +85,8 @@ end;
 
 procedure TFrm_principal.Produtos1Click(Sender: TObject);
 begin
-  Frm_cad_prod:= TFrm_cad_prod.Create(Application);
-  Frm_cad_prod.Show;
+  Frm_produtos:= TFrm_produtos.Create(Application);
+  Frm_produtos.Show;
 end;
 
 end.

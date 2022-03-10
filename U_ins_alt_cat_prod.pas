@@ -77,7 +77,7 @@ begin
     Frm_cad_cat_prod.FormShow(Self);
     Close;
   Except
-    ShowMessage('Erro ao cadastrar categoria');
+    Application.MessageBox('Erro ao cadastrar categoria','ERRO',mb_Ok+mb_IconError+mb_DefButton1);
   end;
 
 end;

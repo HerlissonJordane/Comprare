@@ -62,18 +62,19 @@ begin
                                                             +chr(39)+IntToStr(DBLookupComboBox_categoria.KeyValue)+chr(39)+')');
     ADOQuery_cad_loja.ExecSQL;
 
-    ShowMessage('Cadastrado com sucesso!');
-    LblEdit_nome.Text:= '';
-    LblEdit_rua.Text:= '';
-    LblEdit_numero.Text:= '';
-    LblEdit_bairro.Text:= '';
-    LblEdit_cidade.Text:= '';
-    LblEdit_uf.Text:= '';
-    DBLookupComboBox_categoria.KeyValue:= categoria;
-    LblEdit_nome.SetFocus;
+    Application.MessageBox('Cadastrado com sucesso!', 'Informação', mb_Ok+mb_IconInformation+mb_DefButton1);
+//    LblEdit_nome.Text:= '';
+//    LblEdit_rua.Text:= '';
+//    LblEdit_numero.Text:= '';
+//    LblEdit_bairro.Text:= '';
+//    LblEdit_cidade.Text:= '';
+//    LblEdit_uf.Text:= '';
+//    DBLookupComboBox_categoria.KeyValue:= categoria;
+//    LblEdit_nome.SetFocus;
 
   except
-    ShowMessage('Erro ao gravar. Verifique o motivo!');
+    Application.MessageBox('Erro ao gravar. Verifique o motivo!', 'Alerta', mb_Ok+mb_IconExclamation+mb_DefButton1);
+//    ShowMessage('Erro ao gravar. Verifique o motivo!');
   end;
 end;
 
@@ -98,7 +99,7 @@ begin
   try
     ADOQuery_categoria.Close;
     ADOQuery_categoria.SQL.Clear;
-    ADOQuery_categoria.SQL.Add('SELECT * FROM COMERCIO ORDER BY CATEGORIA');
+    ADOQuery_categoria.SQL.Add('SELECT * FROM CAT_COMERCIO ORDER BY CATEGORIA');
     ADOQuery_categoria.Open;
     categoria:= ADOQuery_categoria.FieldByName('cod_cat').AsInteger;
     DBLookupComboBox_categoria.KeyValue:= categoria; //recebe o primeiro por ordem alfabética

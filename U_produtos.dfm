@@ -1,0 +1,152 @@
+object Frm_produtos: TFrm_produtos
+  Left = 0
+  Top = 0
+  Caption = 'Frm_produtos'
+  ClientHeight = 386
+  ClientWidth = 628
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  OnClose = FormClose
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object LblEdit_categoria: TLabeledEdit
+    Left = 216
+    Top = 32
+    Width = 401
+    Height = 21
+    CharCase = ecUpperCase
+    EditLabel.Width = 78
+    EditLabel.Height = 13
+    EditLabel.Caption = 'Buscar Produtos'
+    TabOrder = 0
+    OnChange = LblEdit_categoriaChange
+  end
+  object Btn_cancelar: TButton
+    Left = 342
+    Top = 344
+    Width = 75
+    Height = 33
+    Caption = 'Cancelar'
+    TabOrder = 1
+    OnClick = Btn_cancelarClick
+  end
+  object DBGrid1: TDBGrid
+    Left = 0
+    Top = 80
+    Width = 617
+    Height = 226
+    BorderStyle = bsNone
+    Color = clBtnFace
+    DataSource = DataSource1
+    FixedColor = clBtnShadow
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = 14
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgMultiSelect, dgTitleClick, dgTitleHotTrack]
+    ParentFont = False
+    TabOrder = 2
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = [fsBold]
+    Columns = <
+      item
+        Alignment = taLeftJustify
+        Expanded = False
+        FieldName = 'cod_prod'
+        Title.Caption = 'C'#243'digo'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'nome'
+        Title.Caption = 'Produto'
+        Width = 263
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'nome_cat'
+        Title.Caption = 'Categoria'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'sigla'
+        Title.Caption = 'Unidade'
+        Visible = True
+      end>
+  end
+  object Btn_inserir: TButton
+    Left = 16
+    Top = 344
+    Width = 75
+    Height = 33
+    Caption = 'Inserir'
+    TabOrder = 3
+    OnClick = Btn_inserirClick
+  end
+  object Btn_alterar: TButton
+    Left = 118
+    Top = 344
+    Width = 75
+    Height = 33
+    Caption = 'Alterar'
+    TabOrder = 4
+    OnClick = Btn_alterarClick
+  end
+  object Btn_excluir: TButton
+    Left = 231
+    Top = 344
+    Width = 75
+    Height = 33
+    Caption = 'Excluir'
+    TabOrder = 5
+    OnClick = Btn_excluirClick
+  end
+  object LabeledEdit1: TLabeledEdit
+    Left = 8
+    Top = 32
+    Width = 185
+    Height = 21
+    CharCase = ecUpperCase
+    EditLabel.Width = 66
+    EditLabel.Height = 13
+    EditLabel.Caption = 'Tipo de busca'
+    TabOrder = 6
+  end
+  object ADOQuery1: TADOQuery
+    Connection = Frm_principal.ADOConnection1
+    Parameters = <>
+    Left = 599
+    Top = 344
+  end
+  object DataSource1: TDataSource
+    DataSet = ADODataSet1
+    Left = 543
+    Top = 344
+  end
+  object ADODataSet1: TADODataSet
+    Active = True
+    Connection = Frm_principal.ADOConnection1
+    CursorType = ctStatic
+    CommandText = 
+      'SELECT cod_prod, nome, sigla, nome_cat, P.cod_cat_prod, P.cod_un' +
+      'd'#13#10'FROM produtos AS P '#13#10'INNER JOIN unidades as U'#13#10#9'ON P.cod_und ' +
+      '= U.cod_und'#13#10'LEFT JOIN cat_produto as Cp'#13#10#9'ON Cp.cod_cat_prod = ' +
+      'P.cod_cat_prod'
+    Parameters = <>
+    Left = 487
+    Top = 344
+  end
+end

@@ -1,0 +1,143 @@
+object Frm_comercios: TFrm_comercios
+  Left = 0
+  Top = 0
+  BorderIcons = [biSystemMenu, biMinimize]
+  Caption = 'Com'#233'rcios cadastrados'
+  ClientHeight = 381
+  ClientWidth = 520
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object LblEdit_categoria: TLabeledEdit
+    Left = 8
+    Top = 24
+    Width = 489
+    Height = 21
+    CharCase = ecUpperCase
+    EditLabel.Width = 77
+    EditLabel.Height = 13
+    EditLabel.Caption = 'Buscar com'#233'rcio'
+    TabOrder = 0
+  end
+  object Btn_cancelar: TButton
+    Left = 422
+    Top = 328
+    Width = 75
+    Height = 33
+    Caption = 'Cancelar'
+    TabOrder = 1
+  end
+  object DBGrid1: TDBGrid
+    Left = 8
+    Top = 80
+    Width = 489
+    Height = 226
+    BorderStyle = bsNone
+    DataSource = DataSource1
+    FixedColor = clBtnShadow
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = 14
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    Options = [dgTitles, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgMultiSelect, dgTitleClick, dgTitleHotTrack]
+    ParentFont = False
+    TabOrder = 2
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = [fsBold]
+    Columns = <
+      item
+        Alignment = taLeftJustify
+        Expanded = False
+        FieldName = 'cod_sup'
+        Title.Caption = 'C'#243'digo'
+        Width = 49
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'nome'
+        Title.Caption = 'Com'#233'rcio'
+        Width = 118
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'bairro'
+        Title.Caption = 'Bairro'
+        Width = 97
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'cidade'
+        Title.Caption = 'Cidade'
+        Width = 98
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'categoria'
+        Title.Caption = 'Categoria'
+        Visible = True
+      end>
+  end
+  object Btn_inserir: TButton
+    Left = 8
+    Top = 328
+    Width = 75
+    Height = 33
+    Caption = 'Inserir'
+    TabOrder = 3
+  end
+  object Btn_alterar: TButton
+    Left = 146
+    Top = 328
+    Width = 75
+    Height = 33
+    Caption = 'Alterar'
+    TabOrder = 4
+  end
+  object Button1: TButton
+    Left = 290
+    Top = 328
+    Width = 75
+    Height = 33
+    Caption = 'Excluir'
+    TabOrder = 5
+  end
+  object ADOQuery1: TADOQuery
+    Connection = Frm_principal.ADOConnection1
+    Parameters = <>
+    Left = 498
+    Top = 88
+  end
+  object DataSource1: TDataSource
+    DataSet = ADODataSet1
+    Left = 498
+    Top = 144
+  end
+  object ADODataSet1: TADODataSet
+    Active = True
+    Connection = Frm_principal.ADOConnection1
+    CursorType = ctStatic
+    CommandText = 
+      'SELECT cod_sup, nome, bairro, cidade, categoria'#13#10'FROM COMERCIO a' +
+      's com INNER JOIN cat_comercio as cat'#13#10'ON com.cod_cat = cat.cod_c' +
+      'at'
+    Parameters = <>
+    Left = 498
+    Top = 232
+  end
+end

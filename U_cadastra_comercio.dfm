@@ -12,7 +12,6 @@ object Frm_cad_comercio: TFrm_cad_comercio
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  KeyPreview = True
   OldCreateOrder = False
   Position = poScreenCenter
   OnClose = FormClose
@@ -44,9 +43,9 @@ object Frm_cad_comercio: TFrm_cad_comercio
     Width = 169
     Height = 21
     CharCase = ecUpperCase
-    EditLabel.Width = 65
+    EditLabel.Width = 87
     EditLabel.Height = 13
-    EditLabel.Caption = 'Nome da Loja'
+    EditLabel.Caption = 'Nome do com'#233'rcio'
     TabOrder = 1
   end
   object LblEdit_rua: TLabeledEdit

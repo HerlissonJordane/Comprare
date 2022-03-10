@@ -21,6 +21,13 @@ object Frm_cad_prod: TFrm_cad_prod
   object Label1: TLabel
     Left = 16
     Top = 127
+    Width = 104
+    Height = 13
+    Caption = 'Categoria de Proditos'
+  end
+  object Label2: TLabel
+    Left = 221
+    Top = 72
     Width = 92
     Height = 13
     Caption = 'Unidade de compra'
@@ -38,27 +45,27 @@ object Frm_cad_prod: TFrm_cad_prod
   object LblEdit_nome: TLabeledEdit
     Left = 16
     Top = 88
-    Width = 289
+    Width = 193
     Height = 21
     CharCase = ecUpperCase
-    EditLabel.Width = 27
+    EditLabel.Width = 83
     EditLabel.Height = 13
-    EditLabel.Caption = 'Nome'
+    EditLabel.Caption = 'Nome do produto'
     TabOrder = 1
   end
-  object DBLookupComboBox_unidade: TDBLookupComboBox
+  object DBLookupComboBox_categoria: TDBLookupComboBox
     Left = 16
     Top = 143
     Width = 289
     Height = 21
-    KeyField = 'cod_und'
-    ListField = 'descricao'
-    ListSource = DataSource_unidade
+    KeyField = 'cod_cat_prod'
+    ListField = 'nome_cat'
+    ListSource = DataSource_categoria
     TabOrder = 2
   end
   object Btn_salvar: TButton
-    Left = 16
-    Top = 228
+    Left = 8
+    Top = 227
     Width = 75
     Height = 33
     Caption = 'Salvar'
@@ -74,15 +81,28 @@ object Frm_cad_prod: TFrm_cad_prod
     TabOrder = 4
     OnClick = Btn_cancelarClick
   end
+  object DBLookupComboBox_unidade: TDBLookupComboBox
+    Left = 221
+    Top = 88
+    Width = 84
+    Height = 21
+    KeyField = 'cod_und'
+    ListField = 'descricao'
+    ListSource = DataSource_unidade
+    TabOrder = 5
+  end
   object ADOQuery_unidade: TADOQuery
     Connection = Frm_principal.ADOConnection1
+    CursorType = ctStatic
     Parameters = <>
-    Left = 128
+    SQL.Strings = (
+      'SELECT cod_und, descricao FROM unidades ORDER BY DESCRICAO')
+    Left = 248
     Top = 176
   end
   object DataSource_unidade: TDataSource
     DataSet = ADOQuery_unidade
-    Left = 232
+    Left = 288
     Top = 176
   end
   object ADOQuery_aux: TADOQuery
@@ -90,5 +110,18 @@ object Frm_cad_prod: TFrm_cad_prod
     Parameters = <>
     Left = 32
     Top = 176
+  end
+  object ADOQuery_categoria: TADOQuery
+    Connection = Frm_principal.ADOConnection1
+    Parameters = <>
+    SQL.Strings = (
+      'SELECT * FROM CAT_PRODUTO ORDER BY NOME_CAT')
+    Left = 112
+    Top = 216
+  end
+  object DataSource_categoria: TDataSource
+    DataSet = ADOQuery_categoria
+    Left = 168
+    Top = 216
   end
 end
