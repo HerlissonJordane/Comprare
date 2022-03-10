@@ -14,17 +14,18 @@ type
     DBGrid1: TDBGrid;
     Btn_inserir: TButton;
     Btn_alterar: TButton;
-    Button1: TButton;
+    Btn_excluir: TButton;
     ADOQuery1: TADOQuery;
     DataSource1: TDataSource;
     ADODataSet1: TADODataSet;
     LabeledEdit1: TLabeledEdit;
     procedure Btn_inserirClick(Sender: TObject);
     procedure Btn_alterarClick(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
+    procedure Btn_excluirClick(Sender: TObject);
     procedure Btn_cancelarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
+    procedure LblEdit_categoriaChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -43,12 +44,14 @@ uses U_cadastra_prod;
 procedure TFrm_produtos.Btn_alterarClick(Sender: TObject);
 begin
   Frm_cad_prod:= TFrm_cad_prod.Create(Application);
-  Frm_cad_prod.LblEdit_cod_prod.Text:= Frm_cad_prod.ADOQuery_aux.FieldByName('cod_prod').AsString;
-  Frm_cad_prod.LblEdit_nome.Text:= Frm_cad_prod.ADOQuery_aux.FieldByName('nome').AsString;
-  Frm_cad_prod.DBLookupComboBox_categoria.KeyValue:= Frm_cad_prod.ADOQuery_aux.FieldByName('cod_cat_prod').AsInteger;
-  Frm_cad_prod.DBLookupComboBox_unidade.KeyValue:= Frm_cad_prod.ADOQuery_aux.FieldByName('cod_und').AsInteger;
+  Frm_cad_prod.LblEdit_cod_prod.Text:= ADODataset1.FieldByName('cod_prod').AsString;
+  Frm_cad_prod.LblEdit_nome.Text:= ADODataset1.FieldByName('nome').AsString;
+  Frm_cad_prod.DBLookupComboBox_categoria.KeyValue:= ADODataset1.FieldByName('cod_cat_prod').AsInteger;
+  Frm_cad_prod.DBLookupComboBox_unidade.KeyValue:= ADODataset1.FieldByName('cod_und').AsInteger;
   Frm_cad_prod.LblEdit_cod_prod.Enabled:= False;
   Frm_cad_prod.ShowModal;
+  ADODataSet1.GotoBookmark(Frm_cad_prod.bookmark);//devolve a antiga posição do produto no GRID
+  ADODataSet1.FreeBookmark(Frm_cad_prod.bookmark);
 end;
 
 procedure TFrm_produtos.Btn_cancelarClick(Sender: TObject);
@@ -61,9 +64,10 @@ begin
   Frm_cad_prod:= TFrm_cad_prod.Create(Application);
   Frm_cad_prod.LblEdit_cod_prod.Enabled:= False;
   Frm_cad_prod.ShowModal;
+  ADODataSet1.Last;
 end;
 
-procedure TFrm_produtos.Button1Click(Sender: TObject);
+procedure TFrm_produtos.Btn_excluirClick(Sender: TObject);
 var codigo, produto: String;
 begin
   codigo:= ADODataSet1.FieldByName('cod_prod').AsString;
@@ -102,6 +106,13 @@ end;
 procedure TFrm_produtos.FormShow(Sender: TObject);
 begin
   ADODataSet1.Open;
+end;
+
+procedure TFrm_produtos.LblEdit_categoriaChange(Sender: TObject);
+begin
+  ADOQuery1.Close;
+  ADOQuery1.ClearFields;
+  ADOQuery1.SQL.Add();
 end;
 
 end.

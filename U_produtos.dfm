@@ -26,6 +26,7 @@ object Frm_produtos: TFrm_produtos
     EditLabel.Height = 13
     EditLabel.Caption = 'Buscar Produtos'
     TabOrder = 0
+    OnChange = LblEdit_categoriaChange
   end
   object Btn_cancelar: TButton
     Left = 342
@@ -42,6 +43,7 @@ object Frm_produtos: TFrm_produtos
     Width = 617
     Height = 226
     BorderStyle = bsNone
+    Color = clBtnFace
     DataSource = DataSource1
     FixedColor = clBtnShadow
     Font.Charset = DEFAULT_CHARSET
@@ -49,7 +51,7 @@ object Frm_produtos: TFrm_produtos
     Font.Height = 14
     Font.Name = 'Tahoma'
     Font.Style = []
-    Options = [dgTitles, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgMultiSelect, dgTitleClick, dgTitleHotTrack]
+    Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgMultiSelect, dgTitleClick, dgTitleHotTrack]
     ParentFont = False
     TabOrder = 2
     TitleFont.Charset = DEFAULT_CHARSET
@@ -103,14 +105,14 @@ object Frm_produtos: TFrm_produtos
     TabOrder = 4
     OnClick = Btn_alterarClick
   end
-  object Button1: TButton
+  object Btn_excluir: TButton
     Left = 231
     Top = 344
     Width = 75
     Height = 33
     Caption = 'Excluir'
     TabOrder = 5
-    OnClick = Button1Click
+    OnClick = Btn_excluirClick
   end
   object LabeledEdit1: TLabeledEdit
     Left = 8
@@ -139,9 +141,10 @@ object Frm_produtos: TFrm_produtos
     Connection = Frm_principal.ADOConnection1
     CursorType = ctStatic
     CommandText = 
-      'SELECT cod_prod, nome, sigla, nome_cat'#13#10'FROM produtos AS P '#13#10'INN' +
-      'ER JOIN unidades as U'#13#10#9'ON P.cod_und = U.cod_und'#13#10'LEFT JOIN cat_' +
-      'produto as Cp'#13#10#9'ON Cp.cod_cat_prod = P.cod_cat_prod'
+      'SELECT cod_prod, nome, sigla, nome_cat, P.cod_cat_prod, P.cod_un' +
+      'd'#13#10'FROM produtos AS P '#13#10'INNER JOIN unidades as U'#13#10#9'ON P.cod_und ' +
+      '= U.cod_und'#13#10'LEFT JOIN cat_produto as Cp'#13#10#9'ON Cp.cod_cat_prod = ' +
+      'P.cod_cat_prod'
     Parameters = <>
     Left = 487
     Top = 344

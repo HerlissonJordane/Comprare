@@ -32,6 +32,7 @@ type
     unidade, categoria: Integer;
   public
     { Public declarations }
+    bookmark: TBookMark;
   end;
 
 var
@@ -50,23 +51,33 @@ end;
 procedure TFrm_cad_prod.Btn_salvarClick(Sender: TObject);
 var msg: String;
 begin
+  if LblEdit_nome.Text = '' then begin
+    ShowMessage('O campo de produto não pode ser vazio!');
+    Abort;
+    LblEdit_nome.SetFocus;
+  end;
+
+  //pega a posição do registro atual no Grid
+  bookmark:= Frm_produtos.ADODataSet1.Bookmark;
+  ADOQuery_aux.Close;
+  ADOQuery_aux.SQL.Clear;
+
   Try
-    if LblEdit_nome.Text = '' then begin
-      ShowMessage('O campo de produto não pode ser vazio!');
-      Abort;
-      LblEdit_nome.SetFocus;
-    end;
-
-    ADOQuery_aux.Close;
-    ADOQuery_aux.SQL.Clear;
-
     if LblEdit_cod_prod.Text = '' then begin
       ADOQuery_aux.SQL.Add('INSERT INTO produtos VALUES('
                                            +chr(39)+LblEdit_nome.Text+chr(39)+', '
                                            +chr(39)+IntToStr(DBLookupComboBox_unidade.KeyValue)+chr(39)+', '
                                            +chr(39)+IntToStr(DBLookupComboBox_categoria.KeyValue)+chr(39)+')'
                                            );
+      ADOQuery_aux.ExecSQL;
       msg:= 'Cadastro realizado com sucesso!';
+      Application.MessageBox(pChar(msg),'Informação',mb_Ok+mb_IconInformation+mb_DefButton1);
+
+      LblEdit_cod_prod.Text:= '';
+      LblEdit_nome.Text:= '';
+      //DBLookupComboBox_unidade.KeyValue:= unidade;
+      LblEdit_nome.SetFocus;
+
     end else begin
       ADOQuery_aux.SQL.Add('update produtos set '+
                            'nome = '+chr(39)+LblEdit_nome.Text+chr(39)+', '+
@@ -74,21 +85,19 @@ begin
                            'cod_cat_prod = '+chr(39)+IntToStr(DBLookupComboBox_categoria.KeyValue)+chr(39)+
                            ' where '+chr(39)+LblEdit_cod_prod.Text+chr(39)+' = cod_prod');
       msg:= 'Alteração realizada com sucesso!';
-    end;
       ADOQuery_aux.ExecSQL;
       Application.MessageBox(pChar(msg),'Informação',mb_Ok+mb_IconInformation+mb_DefButton1);
-      Frm_produtos.ADODataSet1.Active:= False;
-      Frm_produtos.ADODataSet1.Active:= True;
+      Close;
+    end;
+
+    Frm_produtos.ADODataSet1.Active:= False;
+    Frm_produtos.ADODataSet1.Active:= True;
   Except
     msg:= 'Erro ao gravar no banco de dados!'+#13+'Verifique a conexão e tenta novamente.';
     Application.MessageBox(pChar(msg),'ERRO',mb_Ok+mb_IconError+mb_DefButton1);
     LblEdit_nome.SetFocus;
   End;
 
-  LblEdit_cod_prod.Text:= '';
-  LblEdit_nome.Text:= '';
-  //DBLookupComboBox_unidade.KeyValue:= unidade;
-  LblEdit_nome.SetFocus;
 end;
 
 procedure TFrm_cad_prod.FormClose(Sender: TObject; var Action: TCloseAction);
