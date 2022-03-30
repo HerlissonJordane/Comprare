@@ -14,6 +14,7 @@ object Frm_ins_alt_cat_prod: TFrm_ins_alt_cat_prod
   OldCreateOrder = False
   Position = poScreenCenter
   OnClose = FormClose
+  OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
   object SB_salvar: TSpeedButton

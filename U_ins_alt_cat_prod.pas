@@ -18,6 +18,7 @@ type
     procedure SB_cancelarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure LblEdit_categoriaKeyPress(Sender: TObject; var Key: Char);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -37,6 +38,11 @@ procedure TFrm_ins_alt_cat_prod.FormClose(Sender: TObject;
   var Action: TCloseAction);
 begin
   Action:= caFree;
+end;
+
+procedure TFrm_ins_alt_cat_prod.FormShow(Sender: TObject);
+begin
+  LblEdit_cod.Enabled:= False;
 end;
 
 procedure TFrm_ins_alt_cat_prod.LblEdit_categoriaKeyPress(Sender: TObject;

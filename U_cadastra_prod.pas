@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Data.DB, Data.Win.ADODB,
-  Vcl.DBCtrls, Vcl.ExtCtrls;
+  Vcl.DBCtrls, Vcl.ExtCtrls, System.ImageList, Vcl.ImgList;
 
 type
   TFrm_cad_prod = class(TForm)
@@ -22,11 +22,14 @@ type
     Label2: TLabel;
     ADOQuery_categoria: TADOQuery;
     DataSource_categoria: TDataSource;
+    ImageList1: TImageList;
+    Btn_add_categoria: TButton;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure Btn_salvarClick(Sender: TObject);
     procedure Btn_cancelarClick(Sender: TObject);
+    procedure Btn_add_categoriaClick(Sender: TObject);
   private
     { Private declarations }
     unidade, categoria: Integer;
@@ -39,9 +42,16 @@ var
   Frm_cad_prod: TFrm_cad_prod;
 
 implementation
-uses U_principal, U_produtos;
+uses U_principal, U_produtos, U_ins_alt_cat_prod;
 
 {$R *.dfm}
+
+procedure TFrm_cad_prod.Btn_add_categoriaClick(Sender: TObject);
+begin
+  Frm_ins_alt_cat_prod:= TFrm_ins_alt_cat_prod.Create(Application);
+  Frm_ins_alt_cat_prod.ShowModal;
+  DBLookupComboBox_categoria.Refresh;
+end;
 
 procedure TFrm_cad_prod.Btn_cancelarClick(Sender: TObject);
 begin

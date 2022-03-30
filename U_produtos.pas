@@ -110,9 +110,9 @@ end;
 
 procedure TFrm_produtos.LblEdit_categoriaChange(Sender: TObject);
 begin
-  ADOQuery1.Close;
-  ADOQuery1.ClearFields;
-  ADOQuery1.SQL.Add();
+  ADODataSet1.Close;
+  ADODataSet1.CommandText:= 'sp_busca_produtos '+chr(39)+LblEdit_categoria.Text+chr(39);
+  ADODataSet1.Open;
 end;
 
 end.

@@ -65,25 +65,28 @@ object Frm_produtos: TFrm_produtos
         Expanded = False
         FieldName = 'cod_prod'
         Title.Caption = 'C'#243'digo'
+        Width = 64
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'nome'
         Title.Caption = 'Produto'
-        Width = 263
+        Width = 249
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'nome_cat'
         Title.Caption = 'Categoria'
+        Width = 170
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'sigla'
         Title.Caption = 'Unidade'
+        Width = 64
         Visible = True
       end>
   end
@@ -127,6 +130,7 @@ object Frm_produtos: TFrm_produtos
   end
   object ADOQuery1: TADOQuery
     Connection = Frm_principal.ADOConnection1
+    DataSource = DataSource1
     Parameters = <>
     Left = 599
     Top = 344
