@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
-  Vcl.StdCtrls, Vcl.ExtCtrls, Data.Win.ADODB;
+  Vcl.StdCtrls, Vcl.ExtCtrls, Data.Win.ADODB, JvExStdCtrls, JvCombobox;
 
 type
   TFrm_produtos = class(TForm)
@@ -18,7 +18,8 @@ type
     ADOQuery1: TADOQuery;
     DataSource1: TDataSource;
     ADODataSet1: TADODataSet;
-    LabeledEdit1: TLabeledEdit;
+    JvComboBox_TIPO: TJvComboBox;
+    Label1: TLabel;
     procedure Btn_inserirClick(Sender: TObject);
     procedure Btn_alterarClick(Sender: TObject);
     procedure Btn_excluirClick(Sender: TObject);
@@ -26,6 +27,8 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure LblEdit_categoriaChange(Sender: TObject);
+    procedure DBGrid1TitleClick(Column: TColumn);
+    procedure JvComboBox_TIPOChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -46,8 +49,8 @@ begin
   Frm_cad_prod:= TFrm_cad_prod.Create(Application);
   Frm_cad_prod.LblEdit_cod_prod.Text:= ADODataset1.FieldByName('cod_prod').AsString;
   Frm_cad_prod.LblEdit_nome.Text:= ADODataset1.FieldByName('nome').AsString;
-  Frm_cad_prod.DBLookupComboBox_categoria.KeyValue:= ADODataset1.FieldByName('cod_cat_prod').AsInteger;
-  Frm_cad_prod.DBLookupComboBox_unidade.KeyValue:= ADODataset1.FieldByName('cod_und').AsInteger;
+  Frm_cad_prod.JvDBLookupCombo_categoria.KeyValue:= ADODataset1.FieldByName('cod_cat_prod').AsInteger;
+  Frm_cad_prod.JvDBLookupCombo_unidade.KeyValue:= ADODataset1.FieldByName('cod_und').AsInteger;
   Frm_cad_prod.LblEdit_cod_prod.Enabled:= False;
   Frm_cad_prod.ShowModal;
   ADODataSet1.GotoBookmark(Frm_cad_prod.bookmark);//devolve a antiga posição do produto no GRID
@@ -65,6 +68,16 @@ begin
   Frm_cad_prod.LblEdit_cod_prod.Enabled:= False;
   Frm_cad_prod.ShowModal;
   ADODataSet1.Last;
+end;
+
+procedure TFrm_produtos.DBGrid1TitleClick(Column: TColumn);
+var i: smallint;
+begin
+  for I := 0 to DBGrid1.Columns.Count - 1 do
+    DBGrid1.Columns[i].Title.Font.Style := [];
+    ADODataSet1.IndexFieldNames := Column.FieldName;
+    Column.Title.Font.Style := [fsBold];
+    JvComboBox_tipo.ItemIndex:= Column.Index;
 end;
 
 procedure TFrm_produtos.Btn_excluirClick(Sender: TObject);
@@ -108,10 +121,19 @@ begin
   ADODataSet1.Open;
 end;
 
+procedure TFrm_produtos.JvComboBox_TIPOChange(Sender: TObject);
+var Coluna: TColumn;
+begin
+  //ordena o Grid de acordo com a ordenação do ComboBox
+  Coluna:= DBGrid1.Columns.Items[JvComboBox_TIPO.ItemIndex];
+  DBGrid1TitleClick(Coluna);
+end;
+
 procedure TFrm_produtos.LblEdit_categoriaChange(Sender: TObject);
 begin
   ADODataSet1.Close;
-  ADODataSet1.CommandText:= 'sp_busca_produtos '+chr(39)+LblEdit_categoria.Text+chr(39);
+  ADODataSet1.CommandText:= 'sp_busca_produtos '+chr(39)+LblEdit_categoria.Text+chr(39)+', '+
+                             chr(39)+IntToStr(JvComboBox_TIPO.ItemIndex)+chr(39);
   ADODataSet1.Open;
 end;
 

@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Data.Win.ADODB, Vcl.Grids,
-  Vcl.DBGrids, Vcl.StdCtrls, Vcl.ExtCtrls;
+  Vcl.DBGrids, Vcl.StdCtrls, Vcl.ExtCtrls, JvExStdCtrls, JvCombobox;
 
 type
   TFrm_comercios = class(TForm)
@@ -18,12 +18,17 @@ type
     ADOQuery1: TADOQuery;
     DataSource1: TDataSource;
     ADODataSet1: TADODataSet;
+    JvComboBox_TIPO: TJvComboBox;
+    Label1: TLabel;
     procedure FormShow(Sender: TObject);
     procedure Btn_cancelarClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure Btn_inserirClick(Sender: TObject);
     procedure Btn_alterarClick(Sender: TObject);
     procedure Btn_excluirClick(Sender: TObject);
+    procedure DBGrid1TitleClick(Column: TColumn);
+    procedure JvComboBox_TIPOChange(Sender: TObject);
+    procedure LblEdit_categoriaChange(Sender: TObject);
   private
     { Private declarations }
   public
@@ -64,7 +69,18 @@ end;
 procedure TFrm_comercios.Btn_inserirClick(Sender: TObject);
 begin
   Frm_cad_comercio:= TFrm_cad_comercio.Create(Application);
+  acao:= 'I';
   Frm_cad_comercio.Show;
+end;
+
+procedure TFrm_comercios.DBGrid1TitleClick(Column: TColumn);
+var i: smallint;
+begin
+  for I := 0 to DBGrid1.Columns.Count - 1 do
+    DBGrid1.Columns[i].Title.Font.Style := [];
+    ADODataSet1.IndexFieldNames := Column.FieldName;
+    Column.Title.Font.Style := [fsBold];
+    JvComboBox_tipo.ItemIndex:= Column.Index;
 end;
 
 procedure TFrm_comercios.Btn_excluirClick(Sender: TObject);
@@ -107,6 +123,22 @@ procedure TFrm_comercios.FormShow(Sender: TObject);
 begin
   ADODataSet1.Open;
 
+end;
+
+procedure TFrm_comercios.JvComboBox_TIPOChange(Sender: TObject);
+var Coluna: TColumn;
+begin
+  //ordena o Grid de acordo com a ordenação do ComboBox
+  Coluna:= DBGrid1.Columns.Items[JvComboBox_TIPO.ItemIndex];
+  DBGrid1TitleClick(Coluna);
+end;
+
+procedure TFrm_comercios.LblEdit_categoriaChange(Sender: TObject);
+begin
+  ADODataSet1.Close;
+  ADODataSet1.CommandText:= 'SP_busca_comercio '+chr(39)+LblEdit_categoria.Text+chr(39)+', '+
+                             chr(39)+IntToStr(JvComboBox_TIPO.ItemIndex)+chr(39);
+  ADODataSet1.Open;
 end;
 
 end.

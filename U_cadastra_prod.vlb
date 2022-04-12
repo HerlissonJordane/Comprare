@@ -37,14 +37,8 @@ Coordinates=491,278,75,58
 [ADOQuery_categoria]
 Coordinates=331,10,137,58
 
-[DBLookupComboBox_unidade]
-Coordinates=10,346,190,36
-
 [Frm_produtos.DataSource1]
 Coordinates=0,0,173,36
-
-[DBLookupComboBox_categoria]
-Coordinates=576,278,198,36
 
 [Btn_add_categoria]
 Coordinates=199,10,122,58
@@ -54,5 +48,5 @@ Coordinates=584,474,77,36
 Visible=True
 
 []
-Coordinates=584,419,91,36
+Coordinates=10,346,190,36
 

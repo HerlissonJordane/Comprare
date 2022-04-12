@@ -5,25 +5,26 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Data.DB, Data.Win.ADODB,
-  Vcl.DBCtrls, Vcl.ExtCtrls, System.ImageList, Vcl.ImgList;
+  Vcl.DBCtrls, Vcl.ExtCtrls, System.ImageList, Vcl.ImgList, JvExControls,
+  JvDBLookup;
 
 type
   TFrm_cad_prod = class(TForm)
     LblEdit_cod_prod: TLabeledEdit;
     LblEdit_nome: TLabeledEdit;
-    DBLookupComboBox_categoria: TDBLookupComboBox;
     Label1: TLabel;
     ADOQuery_unidade: TADOQuery;
     DataSource_unidade: TDataSource;
     Btn_salvar: TButton;
     Btn_cancelar: TButton;
     ADOQuery_aux: TADOQuery;
-    DBLookupComboBox_unidade: TDBLookupComboBox;
     Label2: TLabel;
     ADOQuery_categoria: TADOQuery;
     DataSource_categoria: TDataSource;
     ImageList1: TImageList;
     Btn_add_categoria: TButton;
+    JvDBLookupCombo_categoria: TJvDBLookupCombo;
+    JvDBLookupCombo_unidade: TJvDBLookupCombo;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
@@ -50,7 +51,7 @@ procedure TFrm_cad_prod.Btn_add_categoriaClick(Sender: TObject);
 begin
   Frm_ins_alt_cat_prod:= TFrm_ins_alt_cat_prod.Create(Application);
   Frm_ins_alt_cat_prod.ShowModal;
-  DBLookupComboBox_categoria.Refresh;
+  JvDBLookupCombo_categoria.Refresh;
 end;
 
 procedure TFrm_cad_prod.Btn_cancelarClick(Sender: TObject);
@@ -76,8 +77,8 @@ begin
     if LblEdit_cod_prod.Text = '' then begin
       ADOQuery_aux.SQL.Add('INSERT INTO produtos VALUES('
                                            +chr(39)+LblEdit_nome.Text+chr(39)+', '
-                                           +chr(39)+IntToStr(DBLookupComboBox_unidade.KeyValue)+chr(39)+', '
-                                           +chr(39)+IntToStr(DBLookupComboBox_categoria.KeyValue)+chr(39)+')'
+                                           +chr(39)+IntToStr(JvDBLookupCombo_unidade.KeyValue)+chr(39)+', '
+                                           +chr(39)+IntToStr(JvDBLookupCombo_categoria.KeyValue)+chr(39)+')'
                                            );
       ADOQuery_aux.ExecSQL;
       msg:= 'Cadastro realizado com sucesso!';
@@ -91,8 +92,8 @@ begin
     end else begin
       ADOQuery_aux.SQL.Add('update produtos set '+
                            'nome = '+chr(39)+LblEdit_nome.Text+chr(39)+', '+
-                           'cod_und = '+chr(39)+IntToStr(DBLookupComboBox_unidade.KeyValue)+chr(39)+','+
-                           'cod_cat_prod = '+chr(39)+IntToStr(DBLookupComboBox_categoria.KeyValue)+chr(39)+
+                           'cod_und = '+chr(39)+IntToStr(JvDBLookupCombo_unidade.KeyValue)+chr(39)+','+
+                           'cod_cat_prod = '+chr(39)+IntToStr(JvDBLookupCombo_categoria.KeyValue)+chr(39)+
                            ' where '+chr(39)+LblEdit_cod_prod.Text+chr(39)+' = cod_prod');
       msg:= 'Alteração realizada com sucesso!';
       ADOQuery_aux.ExecSQL;
@@ -129,7 +130,7 @@ begin
   Try
     ADOQuery_unidade.Open;
     unidade:= ADOQuery_unidade.FieldByName('cod_und').AsInteger;
-    DBLookupComboBox_unidade.KeyValue:= unidade;
+    JvDBLookupCombo_unidade.KeyValue:= unidade;
   Except
     ShowMessage('Erro ao carregar lista de unidades.');
     Abort;
@@ -138,7 +139,7 @@ begin
   Try
     ADOQuery_categoria.Open;
     categoria:= ADOQuery_categoria.FieldByName('cod_cat_prod').AsInteger;
-    DBLookupComboBox_categoria.KeyValue:= categoria;
+    JvDBLookupCombo_categoria.KeyValue:= categoria;
   Except
     ShowMessage('Erro ao carregar lista de categorias.');
     Abort;

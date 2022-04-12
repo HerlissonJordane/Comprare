@@ -21,9 +21,9 @@ object Frm_cad_prod: TFrm_cad_prod
   object Label1: TLabel
     Left = 16
     Top = 127
-    Width = 104
+    Width = 108
     Height = 13
-    Caption = 'Categoria de Proditos'
+    Caption = 'Categoria de Produtos'
   end
   object Label2: TLabel
     Left = 221
@@ -53,25 +53,13 @@ object Frm_cad_prod: TFrm_cad_prod
     EditLabel.Caption = 'Nome do produto'
     TabOrder = 1
   end
-  object DBLookupComboBox_categoria: TDBLookupComboBox
-    Left = 16
-    Top = 143
-    Width = 289
-    Height = 21
-    DragMode = dmAutomatic
-    DropDownRows = 20
-    KeyField = 'cod_cat_prod'
-    ListField = 'nome_cat'
-    ListSource = DataSource_categoria
-    TabOrder = 3
-  end
   object Btn_salvar: TButton
     Left = 8
     Top = 227
     Width = 75
     Height = 33
     Caption = 'Salvar'
-    TabOrder = 4
+    TabOrder = 5
     OnClick = Btn_salvarClick
   end
   object Btn_cancelar: TButton
@@ -80,18 +68,8 @@ object Frm_cad_prod: TFrm_cad_prod
     Width = 75
     Height = 33
     Caption = 'Cancelar'
-    TabOrder = 5
+    TabOrder = 6
     OnClick = Btn_cancelarClick
-  end
-  object DBLookupComboBox_unidade: TDBLookupComboBox
-    Left = 221
-    Top = 88
-    Width = 84
-    Height = 21
-    KeyField = 'cod_und'
-    ListField = 'descricao'
-    ListSource = DataSource_unidade
-    TabOrder = 2
   end
   object Btn_add_categoria: TButton
     Left = 308
@@ -104,8 +82,28 @@ object Frm_cad_prod: TFrm_cad_prod
     Images = ImageList1
     ParentShowHint = False
     ShowHint = True
-    TabOrder = 6
+    TabOrder = 4
     OnClick = Btn_add_categoriaClick
+  end
+  object JvDBLookupCombo_categoria: TJvDBLookupCombo
+    Left = 16
+    Top = 141
+    Width = 289
+    Height = 21
+    LookupField = 'cod_cat_prod'
+    LookupDisplay = 'nome_cat'
+    LookupSource = DataSource_categoria
+    TabOrder = 3
+  end
+  object JvDBLookupCombo_unidade: TJvDBLookupCombo
+    Left = 221
+    Top = 88
+    Width = 84
+    Height = 21
+    LookupField = 'cod_und'
+    LookupDisplay = 'descricao'
+    LookupSource = DataSource_unidade
+    TabOrder = 2
   end
   object ADOQuery_unidade: TADOQuery
     Connection = Frm_principal.ADOConnection1
@@ -128,7 +126,9 @@ object Frm_cad_prod: TFrm_cad_prod
     Top = 176
   end
   object ADOQuery_categoria: TADOQuery
+    Active = True
     Connection = Frm_principal.ADOConnection1
+    CursorType = ctStatic
     Parameters = <>
     SQL.Strings = (
       'SELECT * FROM CAT_PRODUTO ORDER BY NOME_CAT')
