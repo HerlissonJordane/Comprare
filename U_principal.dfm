@@ -230,7 +230,7 @@ object Frm_principal: TFrm_principal
     Connected = True
     ConnectionString = 
       'Provider=SQLOLEDB.1;Password=pa;Persist Security Info=True;User ' +
-      'ID=sa;Initial Catalog=Comprare;Data Source=HERLISSON'
+      'ID=sa;Initial Catalog=Comprare;Data Source=SIPAK'
     ConnectionTimeout = 20
     LoginPrompt = False
     Provider = 'SQLOLEDB.1'

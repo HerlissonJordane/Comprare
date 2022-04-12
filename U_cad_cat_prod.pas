@@ -66,6 +66,7 @@ procedure TFrm_cad_cat_prod.Btn_inserirClick(Sender: TObject);
 begin
   Frm_ins_alt_cat_prod:= TFrm_ins_alt_cat_prod.Create(Application);
   Frm_ins_alt_cat_prod.LblEdit_cod.Enabled:= False;
+  //Frm_ins_alt_cat_prod.LblEdit_categoria.SetFocus;
   Frm_ins_alt_cat_prod.ShowModal;
 
 end;
@@ -85,7 +86,7 @@ begin
       Abort;
     end;
     ADOQuery1.ExecSQL;
-    ShowMessage('Categoria '+categoria+' deletado com sucesso!');
+    ShowMessage('Categoria '+categoria+' deletada com sucesso!');
     FormShow(Self);
   except on E: Exception do
     //if Application.MessageBox(pchar(E.MESSAGE),'Mensagem do Sistema',mb_iconerror+mb_ok)=mrok then begin
