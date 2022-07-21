@@ -40,7 +40,7 @@ var
 
 implementation
 uses U_cadastra_cat, U_cadastra_comercio, U_cadastra_prod, U_cad_cat_prod,
-U_comercios, U_produtos;
+U_comercios, U_produtos, U_cadastro_compras;
 
 {$R *.dfm}
 
@@ -69,7 +69,8 @@ end;
 
 procedure TFrm_principal.Image1Click(Sender: TObject);
 begin
-  ShowMessage('Cliquei no Botão');
+  Frm_cadastro_compras:= TFrm_cadastro_compras.Create(Application);
+  Frm_cadastro_compras.ShowModal;
 end;
 
 procedure TFrm_principal.Image1MouseLeave(Sender: TObject);

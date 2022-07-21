@@ -1,0 +1,147 @@
+object Frm_cadastro_compras: TFrm_cadastro_compras
+  Left = 0
+  Top = 0
+  BorderStyle = bsSingle
+  Caption = 'Cadastro de compras'
+  ClientHeight = 493
+  ClientWidth = 780
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poScreenCenter
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object CardPanel1: TCardPanel
+    Left = 0
+    Top = 0
+    Width = 780
+    Height = 177
+    Align = alTop
+    ActiveCard = Card1
+    BevelInner = bvRaised
+    BevelWidth = 2
+    BorderStyle = bsSingle
+    Caption = 'CardPanel1'
+    TabOrder = 0
+    object Card1: TCard
+      Left = 4
+      Top = 4
+      Width = 768
+      Height = 165
+      Hint = 
+        'COM ESSAS NOVAS DICAS, AGORA '#13#10'PODEMOS TESTAR NOVOS EFEITOS '#13#10'VI' +
+        'SUAIS PARA NOSSA APLICA'#199#195'O'#13#10'FICAR MAIS BONITA'
+      Caption = 'Card1'
+      CardIndex = 0
+      ParentBackground = False
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 0
+      ExplicitLeft = -2
+      ExplicitTop = -2
+      object Label1: TLabel
+        Left = 16
+        Top = 21
+        Width = 94
+        Height = 16
+        Caption = 'Local da compra'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+      end
+      object CalendarPicker_compra: TCalendarPicker
+        Left = 524
+        Top = 113
+        Width = 225
+        Height = 32
+        Hint = 'Testando o bal'#227'o do Hint'
+        ParentCustomHint = False
+        BiDiMode = bdLeftToRight
+        BorderColor = clBlack
+        CalendarHeaderInfo.DaysOfWeekFont.Charset = DEFAULT_CHARSET
+        CalendarHeaderInfo.DaysOfWeekFont.Color = clWindowText
+        CalendarHeaderInfo.DaysOfWeekFont.Height = -13
+        CalendarHeaderInfo.DaysOfWeekFont.Name = 'Segoe UI'
+        CalendarHeaderInfo.DaysOfWeekFont.Style = []
+        CalendarHeaderInfo.Font.Charset = DEFAULT_CHARSET
+        CalendarHeaderInfo.Font.Color = clWindowText
+        CalendarHeaderInfo.Font.Height = -20
+        CalendarHeaderInfo.Font.Name = 'Segoe UI'
+        CalendarHeaderInfo.Font.Style = []
+        Color = clWindow
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clGray
+        Font.Height = -16
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        HighlightColor = 5564860
+        ParentBiDiMode = False
+        ParentFont = False
+        ShowFirstOfGroupLabel = True
+        TabOrder = 0
+        TextHint = 'Data da compra'
+      end
+      object JvDBLookupCombo1: TJvDBLookupCombo
+        Left = 16
+        Top = 40
+        Width = 233
+        Height = 21
+        Hint = 'LOCAL DA COMPRA'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowFrame
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ListStyle = lsDelimited
+        LookupField = 'cod_sup'
+        LookupDisplay = 'nome'
+        LookupSource = DataSource1
+        ParentFont = False
+        TabOrder = 1
+        OnChange = JvDBLookupCombo1Change
+      end
+      object LabeledEdit1: TLabeledEdit
+        Left = 16
+        Top = 89
+        Width = 233
+        Height = 24
+        EditLabel.Width = 129
+        EditLabel.Height = 16
+        EditLabel.Caption = 'Categoria de com'#233'rcio'
+        EditLabel.Font.Charset = DEFAULT_CHARSET
+        EditLabel.Font.Color = clWindowText
+        EditLabel.Font.Height = -13
+        EditLabel.Font.Name = 'Tahoma'
+        EditLabel.Font.Style = []
+        EditLabel.ParentFont = False
+        Enabled = False
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 2
+      end
+    end
+  end
+  object ADOQuery_comercio: TADOQuery
+    Connection = Frm_principal.ADOConnection1
+    Parameters = <>
+    Left = 16
+    Top = 136
+  end
+  object DataSource1: TDataSource
+    DataSet = ADOQuery_comercio
+    Left = 48
+    Top = 136
+  end
+end

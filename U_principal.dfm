@@ -227,10 +227,9 @@ object Frm_principal: TFrm_principal
   end
   object ADOConnection1: TADOConnection
     CommandTimeout = 50
-    Connected = True
     ConnectionString = 
-      'Provider=SQLOLEDB.1;Password=pa;Persist Security Info=True;User ' +
-      'ID=sa;Initial Catalog=Comprare;Data Source=HERLISSON'
+      'Provider=SQLOLEDB.1;Password=478569;Persist Security Info=True;U' +
+      'ser ID=sa;Initial Catalog=Comprare;Data Source=HERLISSON'
     ConnectionTimeout = 20
     LoginPrompt = False
     Provider = 'SQLOLEDB.1'

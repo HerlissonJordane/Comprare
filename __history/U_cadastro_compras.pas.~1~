@@ -1,0 +1,24 @@
+unit U_cadastro_compras;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs;
+
+type
+  TFrm_cadastro_compras = class(TForm)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Frm_cadastro_compras: TFrm_cadastro_compras;
+
+implementation
+
+{$R *.dfm}
+
+end.

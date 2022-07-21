@@ -6,7 +6,7 @@
         <MainSource>Comprare.dpr</MainSource>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
-        <Platform Condition="'$(Platform)'==''">Win64</Platform>
+        <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>3</TargetedPlatforms>
         <AppType>Application</AppType>
     </PropertyGroup>
@@ -165,6 +165,10 @@
         </DCCReference>
         <DCCReference Include="U_produtos.pas">
             <Form>Frm_produtos</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="U_cadastro_compras.pas">
+            <Form>Frm_cadastro_compras</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">

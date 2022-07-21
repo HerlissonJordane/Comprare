@@ -2,21 +2,21 @@
 <BorlandProject>
 	<Transactions>
     <Transaction>2022/01/17 23:43:59.000.047,=C:\Users\HJMor\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2022/01/17 23:44:48.000.186,C:\Users\HJMor\OneDrive\Documentos\Embarcadero\Studio\Projects\U_principal.dfm=C:\Users\HJMor\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
     <Transaction>2022/01/17 23:44:48.000.186,C:\Users\HJMor\OneDrive\Documentos\Embarcadero\Studio\Projects\U_principal.pas=C:\Users\HJMor\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2022/01/17 23:44:48.000.186,C:\Users\HJMor\OneDrive\Documentos\Embarcadero\Studio\Projects\U_principal.dfm=C:\Users\HJMor\OneDrive\Documentos\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
     <Transaction>2022/01/17 23:44:51.000.000,C:\Users\HJMor\OneDrive\Documentos\Embarcadero\Studio\Projects\Comprare.dproj=C:\Users\HJMor\OneDrive\Documentos\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
     <Transaction>2022/01/19 00:14:38.000.447,=H:\PROJETOS DEV\COMPRARE\Unit1.pas</Transaction>
     <Transaction>2022/01/19 00:14:52.000.674,H:\PROJETOS DEV\COMPRARE\U_cadastra_cat.pas=H:\PROJETOS DEV\COMPRARE\Unit1.pas</Transaction>
     <Transaction>2022/01/19 00:14:52.000.674,H:\PROJETOS DEV\COMPRARE\U_cadastra_cat.dfm=H:\PROJETOS DEV\COMPRARE\Unit1.dfm</Transaction>
     <Transaction>2022/01/19 23:33:04.000.535,=H:\PROJETOS DEV\COMPRARE\Unit1.pas</Transaction>
-    <Transaction>2022/01/19 23:34:32.000.168,H:\PROJETOS DEV\COMPRARE\Unit1.pas=H:\PROJETOS DEV\COMPRARE\U_cadastra_comercio.pas</Transaction>
     <Transaction>2022/01/19 23:34:32.000.168,H:\PROJETOS DEV\COMPRARE\Unit1.dfm=H:\PROJETOS DEV\COMPRARE\U_cadastra_comercio.dfm</Transaction>
+    <Transaction>2022/01/19 23:34:32.000.168,H:\PROJETOS DEV\COMPRARE\Unit1.pas=H:\PROJETOS DEV\COMPRARE\U_cadastra_comercio.pas</Transaction>
     <Transaction>2022/01/24 22:45:18.000.654,=H:\PROJETOS DEV\COMPRARE\Unit1.pas</Transaction>
-    <Transaction>2022/01/24 22:46:09.000.100,H:\PROJETOS DEV\COMPRARE\U_cadastra_prod.dfm=H:\PROJETOS DEV\COMPRARE\Unit1.dfm</Transaction>
     <Transaction>2022/01/24 22:46:09.000.100,H:\PROJETOS DEV\COMPRARE\U_cadastra_prod.pas=H:\PROJETOS DEV\COMPRARE\Unit1.pas</Transaction>
+    <Transaction>2022/01/24 22:46:09.000.100,H:\PROJETOS DEV\COMPRARE\U_cadastra_prod.dfm=H:\PROJETOS DEV\COMPRARE\Unit1.dfm</Transaction>
     <Transaction>2022/01/24 23:24:45.000.341,=H:\PROJETOS DEV\COMPRARE\Unit1.pas</Transaction>
-    <Transaction>2022/01/24 23:35:39.000.536,H:\PROJETOS DEV\COMPRARE\U_grid_produtos.pas=H:\PROJETOS DEV\COMPRARE\Unit1.pas</Transaction>
     <Transaction>2022/01/24 23:35:39.000.536,H:\PROJETOS DEV\COMPRARE\U_grid_produtos.dfm=H:\PROJETOS DEV\COMPRARE\Unit1.dfm</Transaction>
+    <Transaction>2022/01/24 23:35:39.000.536,H:\PROJETOS DEV\COMPRARE\U_grid_produtos.pas=H:\PROJETOS DEV\COMPRARE\Unit1.pas</Transaction>
     <Transaction>2022/01/25 23:39:55.000.871,=H:\PROJETOS DEV\COMPRARE\Unit1.pas</Transaction>
     <Transaction>2022/01/25 23:45:45.000.747,H:\PROJETOS DEV\COMPRARE\Unit1.dfm=H:\PROJETOS DEV\COMPRARE\U_cad_cat_prod.dfm</Transaction>
     <Transaction>2022/01/25 23:45:45.000.746,H:\PROJETOS DEV\COMPRARE\Unit1.pas=H:\PROJETOS DEV\COMPRARE\U_cad_cat_prod.pas</Transaction>
@@ -31,5 +31,8 @@
     <Transaction>2022/03/08 20:59:02.000.008,=H:\PROJETOS DEV\COMPRARE\Comprare\Unit1.pas</Transaction>
     <Transaction>2022/03/08 21:03:26.000.543,H:\PROJETOS DEV\COMPRARE\Comprare\Unit1.dfm=H:\PROJETOS DEV\COMPRARE\Comprare\U_produtos.dfm</Transaction>
     <Transaction>2022/03/08 21:03:26.000.543,H:\PROJETOS DEV\COMPRARE\Comprare\Unit1.pas=H:\PROJETOS DEV\COMPRARE\Comprare\U_produtos.pas</Transaction>
+    <Transaction>2022/06/29 21:52:05.000.326,=H:\PROJETOS DEV\COMPRARE\Comprare\Unit1.pas</Transaction>
+    <Transaction>2022/06/29 21:54:24.000.247,H:\PROJETOS DEV\COMPRARE\Comprare\U_cadastro_compras.pas=H:\PROJETOS DEV\COMPRARE\Comprare\Unit1.pas</Transaction>
+    <Transaction>2022/06/29 21:54:24.000.247,H:\PROJETOS DEV\COMPRARE\Comprare\U_cadastro_compras.dfm=H:\PROJETOS DEV\COMPRARE\Comprare\Unit1.dfm</Transaction>
   </Transactions>
 </BorlandProject>

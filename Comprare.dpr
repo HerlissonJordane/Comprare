@@ -13,7 +13,8 @@ uses
   U_ins_alt_cat_prod in 'U_ins_alt_cat_prod.pas' {Frm_ins_alt_cat_prod},
   Vcl.Consts in 'Vcl.Consts.pas',
   U_comercios in 'U_comercios.pas' {Frm_comercios},
-  U_produtos in 'U_produtos.pas' {Frm_produtos};
+  U_produtos in 'U_produtos.pas' {Frm_produtos},
+  U_cadastro_compras in 'U_cadastro_compras.pas' {Frm_cadastro_compras};
 
 {$R *.res}
 
@@ -36,6 +37,8 @@ begin
   Application.CreateForm(TFrm_comercios, Frm_comercios);
   Application.CreateForm(TFrm_produtos, Frm_produtos);
   Application.CreateForm(TFrm_produtos, Frm_produtos);
+  Application.CreateForm(TFrm_cadastro_compras, Frm_cadastro_compras);
+  Application.CreateForm(TFrm_cadastro_compras, Frm_cadastro_compras);
   TStyleManager.TrySetStyle('TabletDark');
   Application.Run;
 
