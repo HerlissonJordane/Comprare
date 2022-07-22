@@ -42,6 +42,8 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
       ParentShowHint = False
       ShowHint = True
       TabOrder = 0
+      ExplicitLeft = 12
+      ExplicitTop = 44
       DesignSize = (
         835
         173)
@@ -2823,7 +2825,7 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
         Animate = True
         AutoSize = False
         Center = True
-        FrameIndex = 55
+        FrameIndex = 5
         Image.Data = {
           142F01004749463839611E001E00F70000000000383955453A56463A56473A56
           463A57473C57493A564A3A564B3B574C3B564C3B574C3D57463D58453F59473E
@@ -5665,7 +5667,7 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
         Top = 69
         Width = 188
         Height = 25
-        Hint = 'Selecione a categoria de produtos para buscar'
+        Hint = 'LOCAL DA COMPRA'
         DisplayEmpty = 'Categoria de produtos'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowFrame
@@ -5673,9 +5675,9 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
         Font.Name = 'Tahoma'
         Font.Style = [fsBold]
         ListStyle = lsDelimited
-        LookupField = 'cod_cat_prod'
-        LookupDisplay = 'NOME_CAT'
-        LookupSource = DS_categoria_prod
+        LookupField = 'cod_sup'
+        LookupDisplay = 'nome'
+        LookupSource = DataSource1
         ParentFont = False
         TabOrder = 4
         OnChange = JvDBLookupCombo1Change
@@ -5689,6 +5691,10 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
     Height = 372
     Align = alClient
     TabOrder = 1
+    ExplicitLeft = 472
+    ExplicitTop = 264
+    ExplicitWidth = 185
+    ExplicitHeight = 41
     object Label2: TLabel
       Left = 184
       Top = 64
@@ -5759,273 +5765,12 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
       Height = 370
       Align = alClient
       DataSource = DS_grid
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
       TitleFont.Height = -11
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = []
-      Columns = <
-        item
-          Alignment = taLeftJustify
-          Expanded = False
-          FieldName = 'cod_prod'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          Title.Caption = 'C'#243'digo Produto'
-          Title.Color = clHighlight
-          Title.Font.Charset = DEFAULT_CHARSET
-          Title.Font.Color = clWindowText
-          Title.Font.Height = -13
-          Title.Font.Name = 'Tahoma'
-          Title.Font.Style = []
-          Width = 93
-          Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = 'nome'
-          Title.Caption = 'Produtos'
-          Title.Font.Charset = DEFAULT_CHARSET
-          Title.Font.Color = clWindowText
-          Title.Font.Height = -13
-          Title.Font.Name = 'Tahoma'
-          Title.Font.Style = []
-          Width = 285
-          Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = 'NOME_CAT'
-          Title.Caption = 'Categoria'
-          Title.Font.Charset = DEFAULT_CHARSET
-          Title.Font.Color = clWindowText
-          Title.Font.Height = -13
-          Title.Font.Name = 'Tahoma'
-          Title.Font.Style = []
-          Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = 'DESCRICAO'
-          Title.Caption = 'Unidade'
-          Title.Font.Charset = DEFAULT_CHARSET
-          Title.Font.Color = clWindowText
-          Title.Font.Height = -13
-          Title.Font.Name = 'Tahoma'
-          Title.Font.Style = []
-          Visible = True
-        end>
-    end
-  end
-  object Panel2: TPanel
-    Left = 0
-    Top = 185
-    Width = 847
-    Height = 372
-    Align = alClient
-    TabOrder = 2
-    ExplicitLeft = 56
-    ExplicitTop = 193
-    object Label11: TLabel
-      Left = 184
-      Top = 64
-      Width = 45
-      Height = 13
-      Caption = 'cod_prod'
-    end
-    object Label12: TLabel
-      Left = 184
-      Top = 112
-      Width = 26
-      Height = 13
-      Caption = 'nome'
-    end
-    object Label13: TLabel
-      Left = 184
-      Top = 160
-      Width = 41
-      Height = 13
-      Caption = 'cod_und'
-    end
-    object Label14: TLabel
-      Left = 184
-      Top = 208
-      Width = 66
-      Height = 13
-      Caption = 'cod_cat_prod'
-    end
-    object Label15: TLabel
-      Left = 8
-      Top = 8
-      Width = 45
-      Height = 13
-      Caption = 'cod_prod'
-    end
-    object Label16: TLabel
-      Left = 8
-      Top = 56
-      Width = 26
-      Height = 13
-      Caption = 'nome'
-    end
-    object Label17: TLabel
-      Left = 8
-      Top = 104
-      Width = 41
-      Height = 13
-      Caption = 'cod_und'
-    end
-    object Label18: TLabel
-      Left = 8
-      Top = 152
-      Width = 66
-      Height = 13
-      Caption = 'cod_cat_prod'
-    end
-    object Label19: TLabel
-      Left = 232
-      Top = 120
-      Width = 66
-      Height = 13
-      Caption = 'cod_cat_prod'
-    end
-    object DBGrid2: TDBGrid
-      Left = 1
-      Top = 1
-      Width = 845
-      Height = 370
-      Align = alClient
-      DataSource = DS_grid
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -13
-      Font.Name = 'Tahoma'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 0
-      TitleFont.Charset = DEFAULT_CHARSET
-      TitleFont.Color = clWindowText
-      TitleFont.Height = -11
-      TitleFont.Name = 'Tahoma'
-      TitleFont.Style = []
-      Columns = <
-        item
-          Alignment = taLeftJustify
-          Expanded = False
-          FieldName = 'cod_prod'
-          Title.Alignment = taCenter
-          Title.Caption = 'Cod. Produto'
-          Title.Color = clHighlight
-          Title.Font.Charset = DEFAULT_CHARSET
-          Title.Font.Color = clWindowText
-          Title.Font.Height = -13
-          Title.Font.Name = 'Tahoma'
-          Title.Font.Style = [fsBold]
-          Width = 94
-          Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = 'nome'
-          ReadOnly = True
-          Title.Alignment = taCenter
-          Title.Caption = 'Produtos'
-          Title.Font.Charset = DEFAULT_CHARSET
-          Title.Font.Color = clWindowText
-          Title.Font.Height = -13
-          Title.Font.Name = 'Tahoma'
-          Title.Font.Style = [fsBold]
-          Width = 216
-          Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = 'NOME_CAT'
-          ReadOnly = True
-          Title.Alignment = taCenter
-          Title.Caption = 'Categoria'
-          Title.Font.Charset = DEFAULT_CHARSET
-          Title.Font.Color = clWindowText
-          Title.Font.Height = -13
-          Title.Font.Name = 'Tahoma'
-          Title.Font.Style = [fsBold]
-          Width = 98
-          Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = 'DESCRICAO'
-          ReadOnly = True
-          Title.Alignment = taCenter
-          Title.Caption = 'Unidade'
-          Title.Font.Charset = DEFAULT_CHARSET
-          Title.Font.Color = clWindowText
-          Title.Font.Height = -13
-          Title.Font.Name = 'Tahoma'
-          Title.Font.Style = [fsBold]
-          Width = 104
-          Visible = True
-        end
-        item
-          Expanded = False
-          FieldName = 'quantidade'
-          ReadOnly = True
-          Title.Caption = 'Quantidade'
-          Title.Font.Charset = DEFAULT_CHARSET
-          Title.Font.Color = clWindowText
-          Title.Font.Height = -13
-          Title.Font.Name = 'Tahoma'
-          Title.Font.Style = [fsBold]
-          Width = 83
-          Visible = True
-        end
-        item
-          ButtonStyle = cbsNone
-          Expanded = False
-          FieldName = 'Pre'#231'o Compra'
-          ImeMode = imOpen
-          Title.Alignment = taCenter
-          Title.Font.Charset = DEFAULT_CHARSET
-          Title.Font.Color = clWindowText
-          Title.Font.Height = -13
-          Title.Font.Name = 'Tahoma'
-          Title.Font.Style = [fsBold]
-          Width = 104
-          Visible = True
-        end
-        item
-          Alignment = taCenter
-          ButtonStyle = cbsEllipsis
-          Color = 16514897
-          Expanded = False
-          FieldName = 'promocao'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -13
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          PickList.Strings = (
-            'SIM'
-            'N'#195'O')
-          Title.Caption = 'Promo'#231#227'o'
-          Title.Font.Charset = DEFAULT_CHARSET
-          Title.Font.Color = clWindowText
-          Title.Font.Height = -13
-          Title.Font.Name = 'Tahoma'
-          Title.Font.Style = [fsBold]
-          Width = 89
-          Visible = True
-        end>
     end
   end
   object ADOQuery_comercio: TADOQuery
@@ -6194,14 +5939,7 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
     CursorType = ctStatic
     Parameters = <>
     SQL.Strings = (
-      'SELECT COD_PROD,'
-      #9'   NOME,'
-      #9'   CAT.NOME_CAT,'
-      #9'   UND.DESCRICAO'
-      'FROM PRODUTOS AS PROD INNER JOIN CAT_PRODUTO AS CAT '
-      #9#9'ON PROD.COD_CAT_PROD = CAT.COD_CAT_PROD'
-      #9' INNER JOIN UNIDADES AS UND'
-      #9#9'ON PROD.COD_UND = UND.COD_UND')
+      'SELECT * FROM PRODUTOS')
     Left = 104
     Top = 497
     object ADOQuery_gridcod_prod: TAutoIncField
@@ -6214,42 +5952,18 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
       FieldName = 'nome'
       Size = 50
     end
-    object ADOQuery_gridNOME_CAT: TStringField
-      FieldName = 'NOME_CAT'
-      Size = 30
+    object ADOQuery_gridcod_und: TIntegerField
+      DisplayWidth = 15
+      FieldName = 'cod_und'
     end
-    object ADOQuery_gridDESCRICAO: TStringField
-      FieldName = 'DESCRICAO'
+    object ADOQuery_gridcod_cat_prod: TIntegerField
+      DisplayWidth = 22
+      FieldName = 'cod_cat_prod'
     end
   end
   object DS_grid: TDataSource
     DataSet = ADOQuery_grid
     Left = 40
     Top = 497
-  end
-  object DS_categoria_prod: TDataSource
-    DataSet = ADOQuery_categoria_prod
-    Left = 456
-    Top = 497
-  end
-  object ADOQuery_categoria_prod: TADOQuery
-    Active = True
-    Connection = Frm_principal.ADOConnection1
-    CursorType = ctStatic
-    Parameters = <>
-    SQL.Strings = (
-      'SELECT COD_CAT_PROD,'
-      #9'   NOME_CAT'
-      'FROM CAT_PRODUTO')
-    Left = 528
-    Top = 497
-    object ADOQuery_categoria_prodCOD_CAT_PROD: TAutoIncField
-      FieldName = 'COD_CAT_PROD'
-      ReadOnly = True
-    end
-    object ADOQuery_categoria_prodNOME_CAT: TStringField
-      FieldName = 'NOME_CAT'
-      Size = 30
-    end
   end
 end
