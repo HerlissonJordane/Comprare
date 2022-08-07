@@ -28,6 +28,7 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
     BorderStyle = bsSingle
     Caption = 'CardPanel1'
     TabOrder = 0
+    ExplicitWidth = 847
     object Card1: TCard
       Left = 4
       Top = 4
@@ -42,6 +43,7 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
       ParentShowHint = False
       ShowHint = True
       TabOrder = 0
+      ExplicitWidth = 835
       DesignSize = (
         833
         173)
@@ -2824,7 +2826,7 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
         Animate = True
         AutoSize = False
         Center = True
-        FrameIndex = 24
+        FrameIndex = 19
         Image.Data = {
           142F01004749463839611E001E00F70000000000383955453A56463A56473A56
           463A57473C57493A564A3A564B3B574C3B564C3B574C3D57463D58453F59473E
@@ -5692,20 +5694,82 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
     Height = 372
     Align = alClient
     TabOrder = 1
+    ExplicitWidth = 847
+    object Label2: TLabel
+      Left = 184
+      Top = 64
+      Width = 45
+      Height = 13
+      Caption = 'cod_prod'
+    end
+    object Label3: TLabel
+      Left = 184
+      Top = 112
+      Width = 26
+      Height = 13
+      Caption = 'nome'
+    end
+    object Label4: TLabel
+      Left = 184
+      Top = 160
+      Width = 41
+      Height = 13
+      Caption = 'cod_und'
+    end
+    object Label5: TLabel
+      Left = 184
+      Top = 208
+      Width = 66
+      Height = 13
+      Caption = 'cod_cat_prod'
+    end
+    object Label6: TLabel
+      Left = 8
+      Top = 8
+      Width = 45
+      Height = 13
+      Caption = 'cod_prod'
+    end
+    object Label7: TLabel
+      Left = 8
+      Top = 56
+      Width = 26
+      Height = 13
+      Caption = 'nome'
+    end
+    object Label8: TLabel
+      Left = 8
+      Top = 104
+      Width = 41
+      Height = 13
+      Caption = 'cod_und'
+    end
+    object Label9: TLabel
+      Left = 8
+      Top = 152
+      Width = 66
+      Height = 13
+      Caption = 'cod_cat_prod'
+    end
+    object Label10: TLabel
+      Left = 232
+      Top = 120
+      Width = 66
+      Height = 13
+      Caption = 'cod_cat_prod'
+    end
     object DBGrid1: TDBGrid
       Left = 1
       Top = 1
       Width = 843
       Height = 370
       Align = alClient
-      BorderStyle = bsNone
       DataSource = DS_grid
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
-      Options = [dgEditing, dgAlwaysShowEditor, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgAlwaysShowSelection, dgCancelOnExit, dgMultiSelect, dgTitleClick, dgTitleHotTrack]
       ParentFont = False
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
@@ -5713,9 +5777,148 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
       TitleFont.Height = -11
       TitleFont.Name = 'Tahoma'
       TitleFont.Style = []
-      OnCellClick = DBGrid1CellClick
-      OnColEnter = DBGrid1ColEnter
-      OnDrawColumnCell = DBGrid1DrawColumnCell
+      Columns = <
+        item
+          Alignment = taLeftJustify
+          Expanded = False
+          FieldName = 'cod_prod'
+          Title.Caption = 'C'#243'digo Produto'
+          Title.Color = clHighlight
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -13
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = []
+          Width = 93
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'nome'
+          Title.Caption = 'Produtos'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -13
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = []
+          Width = 285
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'NOME_CAT'
+          Title.Caption = 'Categoria'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -13
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = []
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'DESCRICAO'
+          Title.Caption = 'Unidade'
+          Title.Font.Charset = DEFAULT_CHARSET
+          Title.Font.Color = clWindowText
+          Title.Font.Height = -13
+          Title.Font.Name = 'Tahoma'
+          Title.Font.Style = []
+          Visible = True
+        end>
+    end
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 185
+    Width = 845
+    Height = 372
+    Align = alClient
+    TabOrder = 2
+    ExplicitWidth = 847
+    object Label11: TLabel
+      Left = 184
+      Top = 64
+      Width = 45
+      Height = 13
+      Caption = 'cod_prod'
+    end
+    object Label12: TLabel
+      Left = 184
+      Top = 112
+      Width = 26
+      Height = 13
+      Caption = 'nome'
+    end
+    object Label13: TLabel
+      Left = 184
+      Top = 160
+      Width = 41
+      Height = 13
+      Caption = 'cod_und'
+    end
+    object Label14: TLabel
+      Left = 184
+      Top = 208
+      Width = 66
+      Height = 13
+      Caption = 'cod_cat_prod'
+    end
+    object Label15: TLabel
+      Left = 8
+      Top = 8
+      Width = 45
+      Height = 13
+      Caption = 'cod_prod'
+    end
+    object Label16: TLabel
+      Left = 8
+      Top = 56
+      Width = 26
+      Height = 13
+      Caption = 'nome'
+    end
+    object Label17: TLabel
+      Left = 8
+      Top = 104
+      Width = 41
+      Height = 13
+      Caption = 'cod_und'
+    end
+    object Label18: TLabel
+      Left = 8
+      Top = 152
+      Width = 66
+      Height = 13
+      Caption = 'cod_cat_prod'
+    end
+    object Label19: TLabel
+      Left = 232
+      Top = 120
+      Width = 66
+      Height = 13
+      Caption = 'cod_cat_prod'
+    end
+    object DBGrid2: TDBGrid
+      Left = 1
+      Top = 1
+      Width = 843
+      Height = 370
+      Align = alClient
+      DataSource = DS_grid
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = []
+      OnDrawColumnCell = DBGrid2DrawColumnCell
       Columns = <
         item
           Alignment = taLeftJustify
@@ -5826,10 +6029,11 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
           Visible = True
         end
         item
-          Alignment = taCenter
           ButtonStyle = cbsNone
+          Color = 8421440
+          DropDownRows = 8
           Expanded = False
-          FieldName = 'SELECIONE'
+          FieldName = 'selecione'
           Title.Alignment = taCenter
           Title.Caption = 'Selecione'
           Title.Font.Charset = DEFAULT_CHARSET
@@ -6011,8 +6215,7 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
       'SELECT COD_PROD,'
       #9'   NOME,'
       #9'   CAT.NOME_CAT,'
-      #9'   UND.DESCRICAO,'
-      '                  '#39'0'#39' AS SELECIONE'
+      #9'   UND.DESCRICAO'
       'FROM PRODUTOS AS PROD INNER JOIN CAT_PRODUTO AS CAT '
       #9#9'ON PROD.COD_CAT_PROD = CAT.COD_CAT_PROD'
       #9' INNER JOIN UNIDADES AS UND'
@@ -6035,10 +6238,6 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
     end
     object ADOQuery_gridDESCRICAO: TStringField
       FieldName = 'DESCRICAO'
-    end
-    object ADOQuery_gridSELECIONE: TStringField
-      FieldName = 'SELECIONE'
-      Size = 1
     end
   end
   object DS_grid: TDataSource

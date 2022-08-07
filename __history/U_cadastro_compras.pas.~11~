@@ -32,27 +32,44 @@ type
     SB_busca_categoria_prod: TSpeedButton;
     JvDBLookupCombo_categ_produto: TJvDBLookupCombo;
     Image2: TImage;
+    Panel1: TPanel;
+    DBGrid1: TDBGrid;
     ADOQuery_grid: TADOQuery;
     DS_grid: TDataSource;
     ADOQuery_gridcod_prod: TAutoIncField;
     ADOQuery_gridnome: TStringField;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
+    Label10: TLabel;
     ADOQuery_gridNOME_CAT: TStringField;
     ADOQuery_gridDESCRICAO: TStringField;
-    Panel1: TPanel;
-    DBGrid1: TDBGrid;
+    Panel2: TPanel;
+    Label11: TLabel;
+    Label12: TLabel;
+    Label13: TLabel;
+    Label14: TLabel;
+    Label15: TLabel;
+    Label16: TLabel;
+    Label17: TLabel;
+    Label18: TLabel;
+    Label19: TLabel;
+    DBGrid2: TDBGrid;
     DS_categoria_prod: TDataSource;
     ADOQuery_categoria_prod: TADOQuery;
     ADOQuery_categoria_prodCOD_CAT_PROD: TAutoIncField;
     ADOQuery_categoria_prodNOME_CAT: TStringField;
-    ADOQuery_gridSELECIONE: TStringField;
     procedure FormShow(Sender: TObject);
     procedure JvDBLookupCombo1Change(Sender: TObject);
     procedure JvGIFAnimator2Click(Sender: TObject);
     procedure JvGIFAnimator1Click(Sender: TObject);
-    procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+    procedure DBGrid2DrawColumnCell(Sender: TObject; const Rect: TRect;
       DataCol: Integer; Column: TColumn; State: TGridDrawState);
-    procedure DBGrid1ColEnter(Sender: TObject);
-    procedure DBGrid1CellClick(Column: TColumn);
   private
     procedure Collapse(acao: Boolean; altura_card: Integer);
     { Private declarations }
@@ -71,56 +88,36 @@ implementation
 uses U_principal;
 
 
-procedure TFrm_cadastro_compras.DBGrid1CellClick(Column: TColumn);
-begin
-  if Column.Field.FieldName = AnsiUpperCase('SELECIONE') then begin
-    //with DBGrid2.DataSource.DataSet do begin
-      DBGrid1.DataSource.DataSet.Edit;
-
-        if DBGrid1.DataSource.DataSet.FieldByName('SELECIONE').AsString = '1' then begin
-          DBGrid1.DataSource.DataSet.FieldByName('SELECIONE').AsString:= '0';
-        end else begin
-          DBGrid1.DataSource.DataSet.FieldByName('SELECIONE').AsString:= '1';
-        end;
-
-      DBGrid1.DataSource.DataSet.Post;
-
-  end;
-
-end;
-
-procedure TFrm_cadastro_compras.DBGrid1ColEnter(Sender: TObject);
-begin
-  //para manter o DBGRID como somente leitura
-  if UpperCase(DBGrid1.SelectedField.FieldName) = 'SELECIONE' then begin
-    DBGrid1.Options := DBGrid1.Options - [dgEditing];
-  end else begin
-    DBGrid1.Options := DBGrid1.Options + [dgEditing];
-  end;
-end;
-
-procedure TFrm_cadastro_compras.DBGrid1DrawColumnCell(Sender: TObject;
+procedure TFrm_cadastro_compras.DBGrid2DrawColumnCell(Sender: TObject;
   const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+const
+  IS_CHECK : Array[Boolean] of Integer = (DFCS_BUTTONCHECK, DFCS_BUTTONCHECK or DFCS_CHECKED);
 var
-  nMarcar: word;
-  oRetangulo: TRect;
+  Check : Integer;
+  R     : TRect;
 begin
-  if UpperCase(Column.FieldName) = 'SELECIONE' then
+
+  if Column.Field.FieldName = 'selecione' then
   begin
-    DBGrid1.Canvas.FillRect(Rect);
-
-    if Column.Field.AsString = '1' then
-      nMarcar := DFCS_CHECKED
-    else
-      nMarcar := DFCS_BUTTONCHECK;
-
-    // ajusta o tamanho do CheckBox
-    oRetangulo := Rect;
-    InflateRect(oRetangulo, -2, -2);
-
-    // desenha o CheckBox conforme a condição acima
-    DrawFrameControl(DBGrid1.Canvas.Handle, oRetangulo, DFC_BUTTON, nMarcar);
+    with DBGrid2.DataSource.DataSet do
+    begin
+      edit;
+      FieldByName('selecione').Value := not FieldByName('selecione').AsBoolean;
+      Post;
+    end;
   end;
+
+//  with DBGrid2 do
+//  begin
+//    if AnsiLowerCase(Column.FieldName) = 'selecione' then
+//    begin
+//      Canvas.FillRect(Rect);
+//      Check := IS_CHECK[Column.Field.AsBoolean];
+//      R := Rect;
+//      InflateRect(R,-2,-2); //aqui manipula o tamanho do checkBox
+//      DrawFrameControl(Canvas.Handle,rect,DFC_BUTTON,Check)
+//    end;
+//  end;
 end;
 
 

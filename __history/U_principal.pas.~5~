@@ -20,11 +20,6 @@ type
     Categoriadecomrcio1: TMenuItem;
     ADOConnection1: TADOConnection;
     CategoriadeProdutos1: TMenuItem;
-    Panel1: TPanel;
-    Panel2: TPanel;
-    Label2: TLabel;
-    Edit1: TEdit;
-    Panel3: TPanel;
     procedure Image1MouseMove(Sender: TObject; Shift: TShiftState; X,
       Y: Integer);
     procedure Image1Click(Sender: TObject);

@@ -106,6 +106,7 @@ object Frm_principal: TFrm_principal
     Height = 524
     Align = alLeft
     TabOrder = 0
+    ExplicitHeight = 495
     object Image1: TImage
       Left = 12
       Top = 20
@@ -210,9 +211,10 @@ object Frm_principal: TFrm_principal
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 1
+    ExplicitLeft = 153
     object Panel2: TPanel
       Left = 176
-      Top = 131
+      Top = 75
       Width = 265
       Height = 78
       ParentCustomHint = False
@@ -291,6 +293,7 @@ object Frm_principal: TFrm_principal
         ShowHint = False
         TabOrder = 1
         StyleElements = []
+        ExplicitTop = 46
       end
     end
   end
@@ -319,7 +322,6 @@ object Frm_principal: TFrm_principal
   end
   object ADOConnection1: TADOConnection
     CommandTimeout = 50
-    Connected = True
     ConnectionString = 
       'Provider=SQLOLEDB.1;Password=478569;Persist Security Info=True;U' +
       'ser ID=sa;Initial Catalog=Comprare;Data Source=HERLISSON'
