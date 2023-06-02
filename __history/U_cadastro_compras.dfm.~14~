@@ -4,7 +4,7 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
   BorderStyle = bsSingle
   Caption = 'Cadastro de compras'
   ClientHeight = 557
-  ClientWidth = 883
+  ClientWidth = 845
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,7 +19,7 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
   object CardPanel1: TCardPanel
     Left = 0
     Top = 0
-    Width = 883
+    Width = 845
     Height = 185
     Align = alTop
     ActiveCard = Card1
@@ -31,7 +31,7 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
     object Card1: TCard
       Left = 4
       Top = 4
-      Width = 871
+      Width = 833
       Height = 173
       Hint = 
         'COM ESSAS NOVAS DICAS, AGORA '#13#10'PODEMOS TESTAR NOVOS EFEITOS '#13#10'VI' +
@@ -43,7 +43,7 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
       ShowHint = True
       TabOrder = 0
       DesignSize = (
-        871
+        833
         173)
       object Label1: TLabel
         Left = 4
@@ -59,7 +59,7 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
         ParentFont = False
       end
       object Image1: TImage
-        Left = 564
+        Left = 568
         Top = 0
         Width = 168
         Height = 173
@@ -370,7 +370,7 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
         Transparent = True
       end
       object JvGIFAnimator1: TJvGIFAnimator
-        Left = 828
+        Left = 790
         Top = 131
         Width = 30
         Height = 30
@@ -2816,7 +2816,7 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
         ExplicitLeft = 792
       end
       object JvGIFAnimator2: TJvGIFAnimator
-        Left = 828
+        Left = 792
         Top = 95
         Width = 30
         Height = 30
@@ -2824,7 +2824,7 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
         Animate = True
         AutoSize = False
         Center = True
-        FrameIndex = 7
+        FrameIndex = 22
         Image.Data = {
           142F01004749463839611E001E00F70000000000383955453A56463A56473A56
           463A57473C57493A564A3A564B3B574C3B564C3B574C3D57463D58453F59473E
@@ -5255,8 +5255,8 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
         OnClick = JvGIFAnimator2Click
       end
       object SB_busca_categoria_prod: TSpeedButton
-        Left = 453
-        Top = 51
+        Left = 450
+        Top = 56
         Width = 48
         Height = 48
         Cursor = crHandPoint
@@ -5471,9 +5471,10 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
           FFFFFFFFFFFF}
         Layout = blGlyphTop
         Spacing = 0
+        ExplicitLeft = 451
       end
       object Image2: TImage
-        Left = 539
+        Left = 501
         Top = 115
         Width = 57
         Height = 50
@@ -5687,14 +5688,14 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
   object Panel1: TPanel
     Left = 0
     Top = 185
-    Width = 883
+    Width = 845
     Height = 372
     Align = alClient
     TabOrder = 1
     object DBGrid1: TDBGrid
       Left = 1
       Top = 1
-      Width = 881
+      Width = 843
       Height = 370
       Align = alClient
       BorderStyle = bsNone
@@ -5704,7 +5705,7 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
       Font.Height = -13
       Font.Name = 'Tahoma'
       Font.Style = []
-      Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgTitleClick, dgTitleHotTrack]
+      Options = [dgEditing, dgAlwaysShowEditor, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgAlwaysShowSelection, dgCancelOnExit, dgMultiSelect, dgTitleClick, dgTitleHotTrack]
       ParentFont = False
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
@@ -5714,12 +5715,12 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
       TitleFont.Style = []
       OnCellClick = DBGrid1CellClick
       OnColEnter = DBGrid1ColEnter
+      OnDrawColumnCell = DBGrid1DrawColumnCell
       Columns = <
         item
           Alignment = taLeftJustify
           Expanded = False
           FieldName = 'cod_prod'
-          ReadOnly = True
           Title.Alignment = taCenter
           Title.Caption = 'Cod. Produto'
           Title.Color = clHighlight
@@ -5742,7 +5743,7 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
           Title.Font.Height = -13
           Title.Font.Name = 'Tahoma'
           Title.Font.Style = [fsBold]
-          Width = 241
+          Width = 189
           Visible = True
         end
         item
@@ -5756,7 +5757,7 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
           Title.Font.Height = -13
           Title.Font.Name = 'Tahoma'
           Title.Font.Style = [fsBold]
-          Width = 125
+          Width = 94
           Visible = True
         end
         item
@@ -5774,9 +5775,9 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
           Visible = True
         end
         item
-          Alignment = taCenter
           Expanded = False
           FieldName = 'quantidade'
+          ReadOnly = True
           Title.Alignment = taCenter
           Title.Caption = 'Qtd.'
           Title.Font.Charset = DEFAULT_CHARSET
@@ -5788,8 +5789,10 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
           Visible = True
         end
         item
+          ButtonStyle = cbsNone
           Expanded = False
-          FieldName = 'preco'
+          FieldName = 'Pre'#231'o Compra'
+          ImeMode = imOpen
           Title.Alignment = taCenter
           Title.Font.Charset = DEFAULT_CHARSET
           Title.Font.Color = clWindowText
@@ -5801,6 +5804,8 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
         end
         item
           Alignment = taCenter
+          ButtonStyle = cbsEllipsis
+          Color = 16514897
           Expanded = False
           FieldName = 'promocao'
           Font.Charset = DEFAULT_CHARSET
@@ -5811,33 +5816,26 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
           PickList.Strings = (
             'SIM'
             'N'#195'O')
-          Title.Alignment = taCenter
           Title.Caption = 'Promo'#231#227'o'
           Title.Font.Charset = DEFAULT_CHARSET
           Title.Font.Color = clWindowText
           Title.Font.Height = -13
           Title.Font.Name = 'Tahoma'
           Title.Font.Style = [fsBold]
-          Width = 91
+          Width = 102
           Visible = True
         end
         item
-          Alignment = taCenter
+          ButtonStyle = cbsNone
           Expanded = False
-          FieldName = 'insere'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -16
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ReadOnly = True
+          FieldName = 'Selecione'
           Title.Alignment = taCenter
-          Title.Caption = 'Insere'
           Title.Font.Charset = DEFAULT_CHARSET
           Title.Font.Color = clWindowText
           Title.Font.Height = -13
           Title.Font.Name = 'Tahoma'
           Title.Font.Style = [fsBold]
+          Width = 80
           Visible = True
         end>
     end
@@ -6003,17 +6001,50 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
       000000000000}
   end
   object ADOQuery_grid: TADOQuery
-    AutoCalcFields = False
+    Active = True
     Connection = Frm_principal.ADOConnection1
     CursorType = ctStatic
-    EnableBCD = False
     ParamCheck = False
     Parameters = <>
+    SQL.Strings = (
+      'SELECT COD_PROD,'
+      #9'   NOME,'
+      #9'   CAT.NOME_CAT,'
+      #9'   UND.DESCRICAO'
+      'FROM PRODUTOS AS PROD INNER JOIN CAT_PRODUTO AS CAT '
+      #9#9'ON PROD.COD_CAT_PROD = CAT.COD_CAT_PROD'
+      #9' INNER JOIN UNIDADES AS UND'
+      #9#9'ON PROD.COD_UND = UND.COD_UND')
     Left = 104
     Top = 497
+    object ADOQuery_gridcod_prod: TAutoIncField
+      DisplayWidth = 18
+      FieldName = 'cod_prod'
+      ReadOnly = True
+    end
+    object ADOQuery_gridnome: TStringField
+      DisplayWidth = 60
+      FieldName = 'nome'
+      Size = 50
+    end
+    object ADOQuery_gridNOME_CAT: TStringField
+      FieldName = 'NOME_CAT'
+      Size = 30
+    end
+    object ADOQuery_gridDESCRICAO: TStringField
+      FieldName = 'DESCRICAO'
+    end
+    object ADOQuery_gridSelecione: TIntegerField
+      Alignment = taCenter
+      DefaultExpression = '0'
+      FieldKind = fkCalculated
+      FieldName = 'Selecione'
+      OnGetText = ADOQuery_gridSELECIONEGetText
+      Calculated = True
+    end
   end
   object DS_grid: TDataSource
-    DataSet = JvMemoryData1
+    DataSet = ADOQuery_grid
     Left = 40
     Top = 497
   end
@@ -6040,72 +6071,6 @@ object Frm_cadastro_compras: TFrm_cadastro_compras
     object ADOQuery_categoria_prodNOME_CAT: TStringField
       FieldName = 'NOME_CAT'
       Size = 30
-    end
-  end
-  object JvMemoryData1: TJvMemoryData
-    FieldDefs = <
-      item
-        Name = 'cod_prod'
-        DataType = ftInteger
-      end
-      item
-        Name = 'nome'
-        DataType = ftString
-        Size = 50
-      end
-      item
-        Name = 'categoria'
-        DataType = ftString
-        Size = 50
-      end
-      item
-        Name = 'unidade'
-        DataType = ftString
-        Size = 10
-      end
-      item
-        Name = 'quantidade'
-        DataType = ftFloat
-      end
-      item
-        Name = 'preco'
-        DataType = ftCurrency
-      end
-      item
-        Name = 'insere'
-        DataType = ftString
-        Size = 1
-      end>
-    Left = 416
-    Top = 305
-    object JvMemoryData1cod_prod: TIntegerField
-      FieldName = 'cod_prod'
-    end
-    object JvMemoryData1nome: TStringField
-      FieldName = 'nome'
-      Size = 50
-    end
-    object JvMemoryData1categoria: TStringField
-      FieldName = 'categoria'
-      Size = 50
-    end
-    object JvMemoryData1unidade: TStringField
-      FieldName = 'unidade'
-      Size = 10
-    end
-    object JvMemoryData1quantidade: TFloatField
-      FieldName = 'quantidade'
-    end
-    object JvMemoryData1preco: TFloatField
-      FieldName = 'preco'
-      currency = True
-    end
-    object JvMemoryData1promocao: TStringField
-      FieldName = 'promocao'
-    end
-    object JvMemoryData1insere: TStringField
-      FieldName = 'insere'
-      Size = 1
     end
   end
 end

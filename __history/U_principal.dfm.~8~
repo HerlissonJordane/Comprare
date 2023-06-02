@@ -106,6 +106,7 @@ object Frm_principal: TFrm_principal
     Height = 495
     Align = alLeft
     TabOrder = 0
+    ExplicitHeight = 524
     object Image1: TImage
       Left = 12
       Top = 20
@@ -210,10 +211,11 @@ object Frm_principal: TFrm_principal
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 1
-    ExplicitLeft = 111
+    ExplicitWidth = 765
+    ExplicitHeight = 524
     object Panel2: TPanel
-      Left = 384
-      Top = 147
+      Left = 176
+      Top = 131
       Width = 265
       Height = 78
       ParentCustomHint = False

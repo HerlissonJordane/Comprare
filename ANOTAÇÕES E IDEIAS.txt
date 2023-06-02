@@ -1,0 +1,15 @@
+Na tela de inserir compras, colocar um botão que busque um novo form ou algum panel lateral, mostrando como está o andamento da inserção dos produtos nessa compra atual. E embaixo, colocar um panel de resumo ou visão geral das informações dessa compra inserida em andamento.
+Nessa panel de baixo, colcoar um botão inserir que ao ser clicado, joga todos os produtos MARCADOS no grid principal para o painel da compra atual.
+Nesse panel com os produtos da compra, colocar um produto que deixe excluir ou retirar um produto que foi adicioado de maneira indesejada.
+
+PARTE DE MARCAR PRODUTOS NO GRID.
+As validações a serem feitas antes de inserir um produto marcado no grid para o painel de compras, são:
+**Tem que ter preço
+**Quantidade
+
+Ao terminar de inserir os produtos e clicar para salvar no banco de dados, ele fará uma verificação para ver se existem prodiutos que se repetem nessa lista e caso aconteça, abrir uma nova tela mostrando esses produtos para que o usuário decida se vai manter a duplicidade ou retirar algum item.
+
+Em caso de produtos que são vendidaos no quilo (ex:presunto, mussarela), inserir a quantidade comprada (na bandeija por exemplo) e no preço de venda, inserir o preço por quilo.
+ao inserir o produto, insira somente o valor unitário e a quantidade comprada que o sistema se encarregará de fazer esse cálculo.
+
+Inserir máscara de R$ na coluna de compra, para que ao digitar um valor, fique mais apresentável.

@@ -12,7 +12,7 @@ uses
   JvGroupHeader, JvButton, JvControlPanelButton, JvComponentPanel,
   JvExExtCtrls, JvSecretPanel, JvGradientHeaderPanel, JvExtComponent,
   JvItemsPanel, JvDBLookup, Data.DB, Data.Win.ADODB, Vcl.Imaging.pngimage,
-  Vcl.Grids, Vcl.DBGrids;
+  Vcl.Grids, Vcl.DBGrids, JvMemoryDataset;
 
 type
   TFrm_cadastro_compras = class(TForm)
@@ -32,44 +32,28 @@ type
     SB_busca_categoria_prod: TSpeedButton;
     JvDBLookupCombo_categ_produto: TJvDBLookupCombo;
     Image2: TImage;
-    Panel1: TPanel;
-    DBGrid1: TDBGrid;
     ADOQuery_grid: TADOQuery;
     DS_grid: TDataSource;
-    ADOQuery_gridcod_prod: TAutoIncField;
-    ADOQuery_gridnome: TStringField;
-    Label2: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
-    Label5: TLabel;
-    Label6: TLabel;
-    Label7: TLabel;
-    Label8: TLabel;
-    Label9: TLabel;
-    Label10: TLabel;
-    ADOQuery_gridNOME_CAT: TStringField;
-    ADOQuery_gridDESCRICAO: TStringField;
-    Panel2: TPanel;
-    Label11: TLabel;
-    Label12: TLabel;
-    Label13: TLabel;
-    Label14: TLabel;
-    Label15: TLabel;
-    Label16: TLabel;
-    Label17: TLabel;
-    Label18: TLabel;
-    Label19: TLabel;
-    DBGrid2: TDBGrid;
+    Panel1: TPanel;
+    DBGrid1: TDBGrid;
     DS_categoria_prod: TDataSource;
     ADOQuery_categoria_prod: TADOQuery;
     ADOQuery_categoria_prodCOD_CAT_PROD: TAutoIncField;
     ADOQuery_categoria_prodNOME_CAT: TStringField;
+    JvMemoryData1: TJvMemoryData;
+    JvMemoryData1cod_prod: TIntegerField;
+    JvMemoryData1nome: TStringField;
+    JvMemoryData1categoria: TStringField;
+    JvMemoryData1unidade: TStringField;
+    JvMemoryData1quantidade: TFloatField;
+    JvMemoryData1insere: TStringField;
+    JvMemoryData1promocao: TStringField;
+    JvMemoryData1preco: TFloatField;
     procedure FormShow(Sender: TObject);
     procedure JvDBLookupCombo1Change(Sender: TObject);
     procedure JvGIFAnimator2Click(Sender: TObject);
     procedure JvGIFAnimator1Click(Sender: TObject);
-    procedure DBGrid2DrawColumnCell(Sender: TObject; const Rect: TRect;
-      DataCol: Integer; Column: TColumn; State: TGridDrawState);
+    procedure DBGrid1CellClick(Column: TColumn);
   private
     procedure Collapse(acao: Boolean; altura_card: Integer);
     { Private declarations }
@@ -87,39 +71,19 @@ implementation
 
 uses U_principal;
 
-
-procedure TFrm_cadastro_compras.DBGrid2DrawColumnCell(Sender: TObject;
-  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
-const
-  IS_CHECK : Array[Boolean] of Integer = (DFCS_BUTTONCHECK, DFCS_BUTTONCHECK or DFCS_CHECKED);
-var
-  Check : Integer;
-  R     : TRect;
+procedure TFrm_cadastro_compras.DBGrid1CellClick(Column: TColumn);
 begin
-
-  if Column.Field.FieldName = 'selecione' then
-  begin
-    with DBGrid2.DataSource.DataSet do
-    begin
-      edit;
-      FieldByName('selecione').Value := not FieldByName('selecione').AsBoolean;
-      Post;
+  if Column.Index = 7 then begin
+    JvMemoryData1.Edit;
+    if JvMemoryData1.FieldByName('insere').AsString = '' then begin
+      JvMemoryData1.FieldByName('insere').AsString:= 'X';
+    end else begin
+      JvMemoryData1.FieldByName('insere').AsString:= '';
     end;
-  end;
+    JvMemoryData1.Post;
+  end
 
-//  with DBGrid2 do
-//  begin
-//    if AnsiLowerCase(Column.FieldName) = 'selecione' then
-//    begin
-//      Canvas.FillRect(Rect);
-//      Check := IS_CHECK[Column.Field.AsBoolean];
-//      R := Rect;
-//      InflateRect(R,-2,-2); //aqui manipula o tamanho do checkBox
-//      DrawFrameControl(Canvas.Handle,rect,DFC_BUTTON,Check)
-//    end;
-//  end;
 end;
-
 
 procedure TFrm_cadastro_compras.FormShow(Sender: TObject);
 begin
@@ -136,6 +100,28 @@ begin
   JvGIFAnimator2.Top:= (CardPanel1.Height - JvGIFAnimator2.Height)-15;
   JvGIFAnimator2.Left:= (CardPanel1.Width - JvGIFAnimator2.Width)-15;
   altura_card:= CardPanel1.Height;
+
+  ADOQuery_grid.Close;
+  ADOQuery_grid.SQL.Clear;
+  ADOQuery_grid.SQL.Add('SELECT COD_PROD, NOME,CAT.NOME_CAT,UND.DESCRICAO '+
+                        'FROM PRODUTOS AS PROD INNER JOIN CAT_PRODUTO AS CAT '+
+                      	'ON PROD.COD_CAT_PROD = CAT.COD_CAT_PROD '+
+                        'INNER JOIN UNIDADES AS UND '+
+                        'ON PROD.COD_UND = UND.COD_UND');
+  ADOQuery_grid.Open;
+  ADOQuery_grid.First;
+  JvMemoryData1.Open;
+  while Not(ADOQuery_grid.Eof) do begin
+    JvMemoryData1.Append;
+    JvMemoryData1.FieldByName('COD_PROD').AsInteger:= ADOQuery_grid.FieldByName('COD_PROD').AsInteger;
+    JvMemoryData1.FieldByName('NOME').AsString     := ADOQuery_grid.FieldByName('NOME').AsString;
+    JvMemoryData1.FieldByName('categoria').AsString:= ADOQuery_grid.FieldByName('NOME_CAT').AsString;
+    JvMemoryData1.FieldByName('unidade').AsString  := ADOQuery_grid.FieldByName('DESCRICAO').AsString;
+
+    JvMemoryData1.Post;
+    ADOQuery_grid.Next
+  end;
+
 end;
 
 procedure TFrm_cadastro_compras.JvDBLookupCombo1Change(Sender: TObject);
@@ -152,6 +138,7 @@ procedure TFrm_cadastro_compras.JvGIFAnimator2Click(Sender: TObject);
 begin
   Collapse(False,altura_card);
 end;
+
 
 PROCEDURE TFrm_cadastro_compras.Collapse(acao: Boolean; altura_card: Integer);
 begin

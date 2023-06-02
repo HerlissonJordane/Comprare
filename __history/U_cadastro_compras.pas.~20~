@@ -34,6 +34,10 @@ type
     Image2: TImage;
     ADOQuery_grid: TADOQuery;
     DS_grid: TDataSource;
+    ADOQuery_gridcod_prod: TAutoIncField;
+    ADOQuery_gridnome: TStringField;
+    ADOQuery_gridNOME_CAT: TStringField;
+    ADOQuery_gridDESCRICAO: TStringField;
     Panel1: TPanel;
     DBGrid1: TDBGrid;
     DS_categoria_prod: TDataSource;
@@ -46,15 +50,13 @@ type
     JvMemoryData1categoria: TStringField;
     JvMemoryData1unidade: TStringField;
     JvMemoryData1quantidade: TFloatField;
+    JvMemoryData1preco: TCurrencyField;
     JvMemoryData1insere: TStringField;
-    JvMemoryData1promocao: TStringField;
-    JvMemoryData1preco: TFloatField;
     procedure FormShow(Sender: TObject);
     procedure JvDBLookupCombo1Change(Sender: TObject);
     procedure JvGIFAnimator2Click(Sender: TObject);
     procedure JvGIFAnimator1Click(Sender: TObject);
     procedure DBGrid1CellClick(Column: TColumn);
-    procedure DBGrid1ColEnter(Sender: TObject);
   private
     procedure Collapse(acao: Boolean; altura_card: Integer);
     { Private declarations }
@@ -74,26 +76,24 @@ uses U_principal;
 
 procedure TFrm_cadastro_compras.DBGrid1CellClick(Column: TColumn);
 begin
-  if Column.Index = 7 then begin
-    JvMemoryData1.Edit;
-    if JvMemoryData1.FieldByName('insere').AsString = '' then begin
-      JvMemoryData1.FieldByName('insere').AsString:= 'X';
-    end else begin
-      JvMemoryData1.FieldByName('insere').AsString:= '';
+  JvMemoryData1.Edit;
+  if JvMemoryData1.FieldByName('insere').AsString = '' then begin
+    JvMemoryData1.FieldByName('insere').AsString:= 'X';
+  end else begin
+    JvMemoryData1.FieldByName('insere').AsString:= '';
+  end;
+
+  case Column.Index of
+    4..6:begin
+      DBGrid1.Options:= [dgEditing,dgAlwaysShowEditor,dgTitles,dgIndicator,dgColumnResize,dgColLines,dgRowLines,dgTabs,dgAlwaysShowSelection,dgConfirmDelete,dgCancelOnExit,dgTitleClick,dgTitleHotTrack]
     end;
-    JvMemoryData1.Post;
+
+    else begin
+      DBGrid1.Options:= [dgAlwaysShowEditor,dgTitles,dgIndicator,dgColumnResize,dgColLines,dgRowLines,dgTabs,dgAlwaysShowSelection,dgConfirmDelete,dgCancelOnExit,dgTitleClick,dgTitleHotTrack]
+    end;
   end;
 
-  if Column.FieldName = 'promocao' then begin
-    DBGrid1.EditorMode := True;
-  end;
 
-end;
-
-procedure TFrm_cadastro_compras.DBGrid1ColEnter(Sender: TObject);
-begin
-  if DBGrid1.SelectedField.FieldName = 'promocao' then
-    DBGrid1.EditorMode := True;
 end;
 
 procedure TFrm_cadastro_compras.FormShow(Sender: TObject);
@@ -128,7 +128,6 @@ begin
     JvMemoryData1.FieldByName('NOME').AsString     := ADOQuery_grid.FieldByName('NOME').AsString;
     JvMemoryData1.FieldByName('categoria').AsString:= ADOQuery_grid.FieldByName('NOME_CAT').AsString;
     JvMemoryData1.FieldByName('unidade').AsString  := ADOQuery_grid.FieldByName('DESCRICAO').AsString;
-
     JvMemoryData1.Post;
     ADOQuery_grid.Next
   end;

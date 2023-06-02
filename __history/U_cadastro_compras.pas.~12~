@@ -12,7 +12,7 @@ uses
   JvGroupHeader, JvButton, JvControlPanelButton, JvComponentPanel,
   JvExExtCtrls, JvSecretPanel, JvGradientHeaderPanel, JvExtComponent,
   JvItemsPanel, JvDBLookup, Data.DB, Data.Win.ADODB, Vcl.Imaging.pngimage,
-  Vcl.Grids, Vcl.DBGrids, JvMemoryDataset;
+  Vcl.Grids, Vcl.DBGrids;
 
 type
   TFrm_cadastro_compras = class(TForm)
@@ -34,27 +34,25 @@ type
     Image2: TImage;
     ADOQuery_grid: TADOQuery;
     DS_grid: TDataSource;
+    ADOQuery_gridcod_prod: TAutoIncField;
+    ADOQuery_gridnome: TStringField;
+    ADOQuery_gridNOME_CAT: TStringField;
+    ADOQuery_gridDESCRICAO: TStringField;
     Panel1: TPanel;
     DBGrid1: TDBGrid;
     DS_categoria_prod: TDataSource;
     ADOQuery_categoria_prod: TADOQuery;
     ADOQuery_categoria_prodCOD_CAT_PROD: TAutoIncField;
     ADOQuery_categoria_prodNOME_CAT: TStringField;
-    JvMemoryData1: TJvMemoryData;
-    JvMemoryData1cod_prod: TIntegerField;
-    JvMemoryData1nome: TStringField;
-    JvMemoryData1categoria: TStringField;
-    JvMemoryData1unidade: TStringField;
-    JvMemoryData1quantidade: TFloatField;
-    JvMemoryData1insere: TStringField;
-    JvMemoryData1promocao: TStringField;
-    JvMemoryData1preco: TFloatField;
+    ADOQuery_gridSELECIONE: TStringField;
     procedure FormShow(Sender: TObject);
     procedure JvDBLookupCombo1Change(Sender: TObject);
     procedure JvGIFAnimator2Click(Sender: TObject);
     procedure JvGIFAnimator1Click(Sender: TObject);
-    procedure DBGrid1CellClick(Column: TColumn);
+    procedure DBGrid1DrawColumnCell(Sender: TObject; const Rect: TRect;
+      DataCol: Integer; Column: TColumn; State: TGridDrawState);
     procedure DBGrid1ColEnter(Sender: TObject);
+    procedure DBGrid1CellClick(Column: TColumn);
   private
     procedure Collapse(acao: Boolean; altura_card: Integer);
     { Private declarations }
@@ -72,29 +70,59 @@ implementation
 
 uses U_principal;
 
+
 procedure TFrm_cadastro_compras.DBGrid1CellClick(Column: TColumn);
 begin
-  if Column.Index = 7 then begin
-    JvMemoryData1.Edit;
-    if JvMemoryData1.FieldByName('insere').AsString = '' then begin
-      JvMemoryData1.FieldByName('insere').AsString:= 'X';
-    end else begin
-      JvMemoryData1.FieldByName('insere').AsString:= '';
-    end;
-    JvMemoryData1.Post;
-  end;
+  if Column.Field.FieldName = AnsiUpperCase('SELECIONE') then begin
+    //with DBGrid2.DataSource.DataSet do begin
+      DBGrid1.DataSource.DataSet.Edit;
 
-  if Column.FieldName = 'promocao' then begin
-    DBGrid1.EditorMode := True;
+        if DBGrid1.DataSource.DataSet.FieldByName('SELECIONE').AsString = '1' then begin
+          DBGrid1.DataSource.DataSet.FieldByName('SELECIONE').AsString:= '0';
+        end else begin
+          DBGrid1.DataSource.DataSet.FieldByName('SELECIONE').AsString:= '1';
+        end;
+
+      DBGrid1.DataSource.DataSet.Post;
+
   end;
 
 end;
 
 procedure TFrm_cadastro_compras.DBGrid1ColEnter(Sender: TObject);
 begin
-  if DBGrid1.SelectedField.FieldName = 'promocao' then
-    DBGrid1.EditorMode := True;
+  //para manter o DBGRID como somente leitura
+  if UpperCase(DBGrid1.SelectedField.FieldName) = 'SELECIONE' then begin
+    DBGrid1.Options := DBGrid1.Options - [dgEditing];
+  end else begin
+    DBGrid1.Options := DBGrid1.Options + [dgEditing];
+  end;
 end;
+
+procedure TFrm_cadastro_compras.DBGrid1DrawColumnCell(Sender: TObject;
+  const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
+var
+  nMarcar: word;
+  oRetangulo: TRect;
+begin
+  if UpperCase(Column.FieldName) = 'SELECIONE' then
+  begin
+    DBGrid1.Canvas.FillRect(Rect);
+
+    if Column.Field.AsString = '1' then
+      nMarcar := DFCS_CHECKED
+    else
+      nMarcar := DFCS_BUTTONCHECK;
+
+    // ajusta o tamanho do CheckBox
+    oRetangulo := Rect;
+    InflateRect(oRetangulo, -2, -2);
+
+    // desenha o CheckBox conforme a condição acima
+    DrawFrameControl(DBGrid1.Canvas.Handle, oRetangulo, DFC_BUTTON, nMarcar);
+  end;
+end;
+
 
 procedure TFrm_cadastro_compras.FormShow(Sender: TObject);
 begin
@@ -111,28 +139,6 @@ begin
   JvGIFAnimator2.Top:= (CardPanel1.Height - JvGIFAnimator2.Height)-15;
   JvGIFAnimator2.Left:= (CardPanel1.Width - JvGIFAnimator2.Width)-15;
   altura_card:= CardPanel1.Height;
-
-  ADOQuery_grid.Close;
-  ADOQuery_grid.SQL.Clear;
-  ADOQuery_grid.SQL.Add('SELECT COD_PROD, NOME,CAT.NOME_CAT,UND.DESCRICAO '+
-                        'FROM PRODUTOS AS PROD INNER JOIN CAT_PRODUTO AS CAT '+
-                      	'ON PROD.COD_CAT_PROD = CAT.COD_CAT_PROD '+
-                        'INNER JOIN UNIDADES AS UND '+
-                        'ON PROD.COD_UND = UND.COD_UND');
-  ADOQuery_grid.Open;
-  ADOQuery_grid.First;
-  JvMemoryData1.Open;
-  while Not(ADOQuery_grid.Eof) do begin
-    JvMemoryData1.Append;
-    JvMemoryData1.FieldByName('COD_PROD').AsInteger:= ADOQuery_grid.FieldByName('COD_PROD').AsInteger;
-    JvMemoryData1.FieldByName('NOME').AsString     := ADOQuery_grid.FieldByName('NOME').AsString;
-    JvMemoryData1.FieldByName('categoria').AsString:= ADOQuery_grid.FieldByName('NOME_CAT').AsString;
-    JvMemoryData1.FieldByName('unidade').AsString  := ADOQuery_grid.FieldByName('DESCRICAO').AsString;
-
-    JvMemoryData1.Post;
-    ADOQuery_grid.Next
-  end;
-
 end;
 
 procedure TFrm_cadastro_compras.JvDBLookupCombo1Change(Sender: TObject);
@@ -149,7 +155,6 @@ procedure TFrm_cadastro_compras.JvGIFAnimator2Click(Sender: TObject);
 begin
   Collapse(False,altura_card);
 end;
-
 
 PROCEDURE TFrm_cadastro_compras.Collapse(acao: Boolean; altura_card: Integer);
 begin
