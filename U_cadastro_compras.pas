@@ -34,7 +34,7 @@ type
     Image2: TImage;
     ADOQuery_grid: TADOQuery;
     DS_grid: TDataSource;
-    Panel1: TPanel;
+    Panel_grid: TPanel;
     DBGrid1: TDBGrid;
     DS_categoria_prod: TDataSource;
     ADOQuery_categoria_prod: TADOQuery;
@@ -49,6 +49,14 @@ type
     JvMemoryData1insere: TStringField;
     JvMemoryData1promocao: TStringField;
     JvMemoryData1preco: TFloatField;
+    Panel_right: TPanel;
+    Panel_client: TPanel;
+    Panel_footer: TPanel;
+    SpeedButton1: TSpeedButton;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
+    Label5: TLabel;
     procedure FormShow(Sender: TObject);
     procedure JvDBLookupCombo1Change(Sender: TObject);
     procedure JvGIFAnimator2Click(Sender: TObject);
@@ -76,15 +84,18 @@ procedure TFrm_cadastro_compras.DBGrid1CellClick(Column: TColumn);
 begin
   if Column.Index = 7 then begin
     JvMemoryData1.Edit;
-    if JvMemoryData1.FieldByName('insere').AsString = '' then begin
+    if JvMemoryData1.FieldByName('insere').AsString = '' then
+    begin
       JvMemoryData1.FieldByName('insere').AsString:= 'X';
-    end else begin
+    end else
+    begin
       JvMemoryData1.FieldByName('insere').AsString:= '';
     end;
     JvMemoryData1.Post;
   end;
 
-  if Column.FieldName = 'promocao' then begin
+  if Column.FieldName = 'promocao' then
+  begin
     DBGrid1.EditorMode := True;
   end;
 
@@ -93,7 +104,9 @@ end;
 procedure TFrm_cadastro_compras.DBGrid1ColEnter(Sender: TObject);
 begin
   if DBGrid1.SelectedField.FieldName = 'promocao' then
+  begin
     DBGrid1.EditorMode := True;
+  end;
 end;
 
 procedure TFrm_cadastro_compras.FormShow(Sender: TObject);
@@ -114,7 +127,7 @@ begin
 
   ADOQuery_grid.Close;
   ADOQuery_grid.SQL.Clear;
-  ADOQuery_grid.SQL.Add('SELECT COD_PROD, NOME,CAT.NOME_CAT,UND.DESCRICAO '+
+  ADOQuery_grid.SQL.Add('SELECT COD_PROD, NOME, CAT.NOME_CAT, UND.DESCRICAO '+
                         'FROM PRODUTOS AS PROD INNER JOIN CAT_PRODUTO AS CAT '+
                       	'ON PROD.COD_CAT_PROD = CAT.COD_CAT_PROD '+
                         'INNER JOIN UNIDADES AS UND '+

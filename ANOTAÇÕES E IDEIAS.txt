@@ -1,6 +1,6 @@
 Na tela de inserir compras, colocar um botão que busque um novo form ou algum panel lateral, mostrando como está o andamento da inserção dos produtos nessa compra atual. E embaixo, colocar um panel de resumo ou visão geral das informações dessa compra inserida em andamento.
 Nessa panel de baixo, colcoar um botão inserir que ao ser clicado, joga todos os produtos MARCADOS no grid principal para o painel da compra atual.
-Nesse panel com os produtos da compra, colocar um produto que deixe excluir ou retirar um produto que foi adicioado de maneira indesejada.
+Nesse panel com os produtos da compra, colocar um botão que deixe excluir ou retirar um produto que foi adicioado de maneira indesejada.
 
 PARTE DE MARCAR PRODUTOS NO GRID.
 As validações a serem feitas antes de inserir um produto marcado no grid para o painel de compras, são:
